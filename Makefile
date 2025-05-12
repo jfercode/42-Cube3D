@@ -15,10 +15,12 @@ MLX_DIR		=	minilibx-linux
 MLX_LIB		=	$(MLX_DIR)/libmlx.a
 
 EXECUTION	=	
-PARSING		=	
+PARSING		=	file_validation
+ERROR 		=	error_handling 
 
 SRC_FILES 	=	$(addsuffix .c, $(addprefix source/execution/, $(EXECUTION))) \
 	  			$(addsuffix .c, $(addprefix source/parsing/, $(PARSING))) \
+	  			$(addsuffix .c, $(addprefix source/error_handling/, $(ERROR))) \
 				source/main.c
 
 OBJS 		=	$(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -35,11 +37,9 @@ all: $(NAME)
 $(OBJ_DIR):
 		@mkdir -p $(OBJ_DIR)
 
-$(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJS)
-		@mkdir -p $(OBJ_DIR)
-		@ar rcs $@ $^
+$(NAME): $(LIBFT_LIB) $(OBJS) $(MLX_LIB)
 		@echo -n "$(GREEN)█$(RESET)"
-		@$(CC) $(CFLAGS) -o cub3D $(OBJ_DIR)/main.o $(NAME) $(LIBFT_LIB) $(MLX_LIB) $(LIBS)
+		@$(CC) $(C_FLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LIB) $(LIBS)
 		@echo -n "$(BLUE)READY TO EXECUTE.   $(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
