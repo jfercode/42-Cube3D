@@ -10,7 +10,7 @@ SRC_DIR		=	source
 OBJ_DIR		=	build/obj
 HEADER_DIR	=	include
 LIBFT_DIR	=	include/libft
-LIBFT_LIB	=	include/libft/libft.a
+LIBFT_LIB	=	include/libft/build/libft.a
 MLX_DIR		=	minilibx-linux
 MLX_LIB		=	$(MLX_DIR)/libmlx.a
 
@@ -40,7 +40,7 @@ $(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJS)
 		@ar rcs $@ $^
 		@echo -n "$(GREEN)█$(RESET)"
 		@$(CC) $(CFLAGS) -o cub3D $(OBJ_DIR)/main.o $(NAME) $(LIBFT_LIB) $(MLX_LIB) $(LIBS)
-		@echo -n "$(BLUE)READY TO EXECUTE.   $(RESET)"
+		@echo -n "\n$(BLUE)READY TO EXECUTE.   $(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		@mkdir -p $(dir $@)
