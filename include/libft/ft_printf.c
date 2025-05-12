@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:55:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/03/18 18:13:35 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/12 18:53:38 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ int	ft_printf(const char *format, ...)
 	return (cont);
 }
 
-int	ft_putchar(char c, int cont)
+int	print_putchar(char c, int cont)
 {
 	write (1, &c, 1);
 	cont++;
 	return (cont);
 }
 
-int	ft_putstr(char *s, int cont)
+int	print_putstr(char *s, int cont)
 {
 	int	i;
 
