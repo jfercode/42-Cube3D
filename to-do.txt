@@ -1,0 +1,30 @@
+Program's name: cub3D
+Every file needed. No additional folders neccessary.
+May use: open, close, read, write, printf, malloc, free, perror, strerror, exit, gettimeofday, math lib, minilibx, libft
+
+Requisites:
+- (Window management (changing windows, minimazing, moving))
+- Wall textures changes depending on the way they're facing (north, east, south, west) (needs four textures)
+- Floor and ceiling are solid colors (RGB codes)
+- (Movement with WASD), right and left arrows to rotate
+- (ESC and cross exit the program CLEANLY)
+- (If anything happens, the program returns Error\n + message and exits properly (clean most likely))
+
+Parsing:
+- (The map is only composed by 0 (empty), 1 (wall)), and NSEW (player's position, depending on where is it looking at the start)
+- (Map must be closed by walls)
+- (Map may contain spaces, up to you how to handle them (make them 0s))
+- Textures and colors are specified with an identifier + path (NO, SO, WE, EA, F, C ./path)
+- The textures and colors may be written in any order, with empty lines in between or with their elements separated by spaces.
+
+Bonus:
+- Wall collisions
+- Minimap
+- Functional doors
+- Animated sprites
+- Rotation with mouse
+
+
+Parseo same as so - long but it can be " " in fact of 0 
+
+
