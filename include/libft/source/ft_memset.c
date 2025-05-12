@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/12 19:42:02 by jaferna2         ###   ########.fr       */
+/*   Created: 2024/09/17 11:58:29 by jaferna2          #+#    #+#             */
+/*   Updated: 2024/09/17 15:05:05 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/libft.h"
 
-int	main(int ac, char **av)
+void	*ft_memset(void *s, int c, size_t n)
 {
-    t_cub3d *basic_str;
+	size_t			i;
+	unsigned char	*p;
 
-	if (ac < 2)
-		return (1);
-	else
+	i = 0;
+	p = (unsigned char *) s;
+	while (i < n)
 	{
-		if (file_validation(av[1], basic_str))
-			printf("ok\n");
+		p[i] = (unsigned char) c;
+		i++;
 	}
-	return (0);
+	return (s);
 }

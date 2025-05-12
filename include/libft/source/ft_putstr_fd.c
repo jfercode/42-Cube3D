@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/12 19:42:02 by jaferna2         ###   ########.fr       */
+/*   Created: 2024/09/24 12:34:35 by jaferna2          #+#    #+#             */
+/*   Updated: 2024/09/24 12:54:31 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/libft.h"
 
-int	main(int ac, char **av)
+void	ft_putstr_fd(char *s, int fd)
 {
-    t_cub3d *basic_str;
+	int		i;
 
-	if (ac < 2)
-		return (1);
-	else
+	i = 0;
+	while (s[i])
 	{
-		if (file_validation(av[1], basic_str))
-			printf("ok\n");
+		write(fd, &s[i], 1);
+		i++;
 	}
-	return (0);
 }

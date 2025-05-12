@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/12 19:42:02 by jaferna2         ###   ########.fr       */
+/*   Created: 2024/09/24 09:27:36 by jaferna2          #+#    #+#             */
+/*   Updated: 2024/09/24 12:14:32 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/libft.h"
 
-int	main(int ac, char **av)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-    t_cub3d *basic_str;
+	unsigned int	i;
 
-	if (ac < 2)
-		return (1);
-	else
+	i = 0;
+	while (s[i])
 	{
-		if (file_validation(av[1], basic_str))
-			printf("ok\n");
+		f(i, &s[i]);
+		i++;
 	}
-	return (0);
 }

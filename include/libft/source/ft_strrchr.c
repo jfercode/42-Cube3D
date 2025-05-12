@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/12 19:42:02 by jaferna2         ###   ########.fr       */
+/*   Created: 2024/09/18 15:35:23 by jaferna2          #+#    #+#             */
+/*   Updated: 2024/10/01 10:03:14 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strrchr(const char *s, int c)
 {
-    t_cub3d *basic_str;
+	char	*p;
+	int		i;
 
-	if (ac < 2)
-		return (1);
-	else
+	p = (char *)s;
+	i = 0;
+	while (p[i])
+		i++;
+	while (i >= 0)
 	{
-		if (file_validation(av[1], basic_str))
-			printf("ok\n");
+		if (p[i] == (char)c)
+			return (&p[i]);
+		i--;
 	}
-	return (0);
+	return (NULL);
 }

@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/12 19:42:02 by jaferna2         ###   ########.fr       */
+/*   Created: 2024/09/20 14:47:52 by jaferna2          #+#    #+#             */
+/*   Updated: 2025/04/25 10:56:30 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-    t_cub3d *basic_str;
+	size_t	l;
+	char	*ns;
+	int		i;
+	int		j;
 
-	if (ac < 2)
-		return (1);
-	else
+	l = ft_strlen(s1) + ft_strlen(s2);
+	ns = (char *)malloc((l + 1) * sizeof(char));
+	if (!ns)
+		return (NULL);
+	i = 0;
+	while (s1[i])
 	{
-		if (file_validation(av[1], basic_str))
-			printf("ok\n");
+		ns[i] = s1[i];
+		i++;
 	}
-	return (0);
+	j = 0;
+	while (s2[j])
+	{
+		ns[i] = s2[j];
+		i++;
+		j++;
+	}
+	ns[i] = '\0';
+	return (ns);
 }

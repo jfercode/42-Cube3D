@@ -1,6 +1,6 @@
 MAKEFLAGS += --no-print-directory
 
-NAME	=	build/cub3D
+NAME	=	cub3D
 
 CC		=	cc
 C_FLAGS	=	-Wall -Werror -Wextra -g3
@@ -10,7 +10,7 @@ SRC_DIR		=	source
 OBJ_DIR		=	build/obj
 HEADER_DIR	=	include
 LIBFT_DIR	=	include/libft
-LIBFT_LIB	=	include/libft/libft.a
+LIBFT_LIB	=	include/libft/build/libft.a
 MLX_DIR		=	minilibx-linux
 MLX_LIB		=	$(MLX_DIR)/libmlx.a
 
@@ -40,7 +40,7 @@ $(OBJ_DIR):
 $(NAME): $(LIBFT_LIB) $(OBJS) $(MLX_LIB)
 		@echo -n "$(GREEN)█$(RESET)"
 		@$(CC) $(C_FLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LIB) $(LIBS)
-		@echo -n "$(BLUE)READY TO EXECUTE.   $(RESET)"
+		@echo -n "\n$(BLUE)READY TO EXECUTE.\n$(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		@mkdir -p $(dir $@)

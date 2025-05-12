@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strarrlen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/12 19:42:02 by jaferna2         ###   ########.fr       */
+/*   Created: 2025/02/25 16:37:36 by jaferna2          #+#    #+#             */
+/*   Updated: 2025/02/25 16:39:13 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/libft.h"
 
-int	main(int ac, char **av)
+size_t	ft_strarrlen(char **args)
 {
-    t_cub3d *basic_str;
+	size_t	len;
 
-	if (ac < 2)
-		return (1);
-	else
-	{
-		if (file_validation(av[1], basic_str))
-			printf("ok\n");
-	}
-	return (0);
+	len = 0;
+	while (args && args[len])
+		len++;
+	return (len);
 }

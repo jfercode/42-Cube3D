@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/12 18:44:13 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/12 19:41:31 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define CUB3D_H
 
 # include "../minilibx-linux/mlx.h"
-# include "../minilibx-linux/mlx_int.h"
-# include "libft/libft.h"
+# include "../minilibx-linux/mlx_int.h" 
+# include "libft/include/libft.h"
+
 # include <errno.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -23,6 +24,45 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <unistd.h>
+
+# ifndef TILE_SIZE
+#  define TILE_SIZE 64
+# endif
+
+# define K_ESC 65307
+# define K_A 97
+# define K_D 100
+# define K_S 115
+# define K_W 119
+# define K_AR_R 65363
+# define K_AR_L 65361
+
+typedef struct s_map
+{
+    char    *N_text;
+    char    *S_text;
+    char    *W_text;
+    char    *E_text;
+    char    *F_color;
+    char    *C_color;
+    int     line;
+    int     col;
+}			t_map;
+
+typedef struct s_game
+{
+	void	*mlx;
+	void	*window;
+
+	int		win_wid;
+	int		win_len;
+
+    t_img   *north;
+    t_img   *south;
+    t_img   *west;
+    t_img   *east;
+
+}			t_game;
 
 typedef struct s_wall_textures
 {
@@ -41,6 +81,10 @@ typedef struct s_cub3d
 }					t_cub3d;
 
 /*  PARSING */
-int					file_validation(char *map_file);
+int					file_validation(char *map_file, t_cub3d *cub3d);
+
+/*  ERROR_HANDLING  */
+void	ft_error(const char *error_msg);
+void	ft_error_exit(const char *error_msg);
 
 #endif

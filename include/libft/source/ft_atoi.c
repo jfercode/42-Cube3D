@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 15:25:54 by penpalac          #+#    #+#             */
-/*   Updated: 2024/12/16 12:13:13 by penpalac         ###   ########.fr       */
+/*   Created: 2024/09/19 14:20:08 by jaferna2          #+#    #+#             */
+/*   Updated: 2024/09/20 12:56:46 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 int	ft_atoi(const char *nptr)
 {
-	int	sign;
-	int	res;
-	int	i;
+	int		i;
+	int		n;
+	int		s;
 
 	i = 0;
-	res = 0;
-	sign = 1;
-	while (nptr[i] == ' ' || ((nptr[i] >= 9) && (nptr[i] <= 13)))
+	n = 0;
+	s = 1;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
 		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
 		if (nptr[i] == '-')
-			sign *= -1;
+			s = -1;
 		i++;
 	}
-	while (nptr[i] && (nptr[i] >= 48 && nptr[i] <= 57))
+	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		res = (res * 10) + (nptr[i] - 48);
+		n = n * 10 + (nptr[i] - 48);
 		i++;
 	}
-	return (res * sign);
+	return (n * s);
 }

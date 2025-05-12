@@ -3,53 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 13:50:40 by penpalac          #+#    #+#             */
-/*   Updated: 2024/12/16 12:26:36 by penpalac         ###   ########.fr       */
+/*   Created: 2024/09/23 12:55:00 by jaferna2          #+#    #+#             */
+/*   Updated: 2024/09/26 10:04:59 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-int		getlen(int n)
+static size_t	ncount(int n)
 {
-	int i;
+	size_t	i;
 
-	if (n == 0)
-		return (1);
 	i = 0;
+	if (n <= 0)
+		i++;
 	while (n != 0)
 	{
-		n /= 10;
 		i++;
+		n /= 10;
 	}
 	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	int		sign;
-	int		len;
-	char	*nbr;
+	char	*ns;
+	size_t	i;
+	size_t	z;
+	long	temp_n;
 
-	len = getlen(n);
-	if(n < 0)
-	{
-		sign = -1;
-		n *= -1;
-		len++;
-	}
-	nbr = (char *)malloc((len + 1) * sizeof(char));
-	if (!nbr)
+	z = ncount(n);
+	temp_n = n;
+	ns = (char *)malloc((z + 1) * sizeof(char));
+	if (!ns)
 		return (NULL);
-	nbr[0] = '-';
-	nbr[len] = '\0';
-	while ((len - 1) >= 0)
+	i = z;
+	if (n < 0)
+		temp_n *= -1;
+	ns[z] = '\0';
+	if (n == 0)
+		ns[--i] = '0';
+	while (temp_n > 0)
 	{
-		nbr[len - 1] = (n % 10) + '0';
-		n /= 10;
-		len--;
+		ns[--i] = (temp_n % 10) + 48;
+		temp_n /= 10;
 	}
-	return (nbr);
+	if (n < 0)
+		ns[--i] = '-';
+	return (ns);
 }

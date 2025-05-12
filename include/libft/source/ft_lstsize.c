@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/12 19:42:02 by jaferna2         ###   ########.fr       */
+/*   Created: 2024/09/26 16:01:50 by jaferna2          #+#    #+#             */
+/*   Updated: 2024/09/27 10:21:28 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/libft.h"
 
-int	main(int ac, char **av)
+int	ft_lstsize(t_list *lst)
 {
-    t_cub3d *basic_str;
+	int		i;
+	t_list	*l;
 
-	if (ac < 2)
-		return (1);
-	else
+	i = 0;
+	l = lst;
+	while (l)
 	{
-		if (file_validation(av[1], basic_str))
-			printf("ok\n");
+		i++;
+		l = l->next;
 	}
-	return (0);
+	return (i);
 }

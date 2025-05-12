@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: jaferna2 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/12 19:42:02 by jaferna2         ###   ########.fr       */
+/*   Created: 2024/09/18 16:05:41 by jaferna2          #+#    #+#             */
+/*   Updated: 2024/10/01 10:10:34 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/libft.h"
 
-int	main(int ac, char **av)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-    t_cub3d *basic_str;
+	unsigned char	*p;
+	size_t			i;
 
-	if (ac < 2)
-		return (1);
-	else
+	p = (unsigned char *)s;
+	i = 0;
+	while (i < n)
 	{
-		if (file_validation(av[1], basic_str))
-			printf("ok\n");
+		if (p[i] == (unsigned char) c)
+			return (&p[i]);
+		i++;
 	}
-	return (0);
+	return (NULL);
 }
