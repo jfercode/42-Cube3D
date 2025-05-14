@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/12 19:41:31 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/13 17:03:28 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 # define CUB3D_H
 
 # include "../minilibx-linux/mlx.h"
-# include "../minilibx-linux/mlx_int.h" 
+# include "../minilibx-linux/mlx_int.h"
 # include "libft/include/libft.h"
-
 # include <errno.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -29,6 +28,9 @@
 #  define TILE_SIZE 64
 # endif
 
+# define FAIL 0
+# define SUCCESS 1
+
 # define K_ESC 65307
 # define K_A 97
 # define K_D 100
@@ -39,30 +41,30 @@
 
 typedef struct s_map
 {
-    char    *N_text;
-    char    *S_text;
-    char    *W_text;
-    char    *E_text;
-    char    *F_color;
-    char    *C_color;
-    int     line;
-    int     col;
-}			t_map;
+	char			*n_text;
+	char			*s_text;
+	char			*w_text;
+	char			*e_text;
+	char			*f_color;
+	char			*c_color;
+	int				line;
+	int				col;
+}					t_map;
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*window;
+	void			*mlx;
+	void			*window;
 
-	int		win_wid;
-	int		win_len;
+	int				win_wid;
+	int				win_len;
 
-    t_img   *north;
-    t_img   *south;
-    t_img   *west;
-    t_img   *east;
+	t_img			*north;
+	t_img			*south;
+	t_img			*west;
+	t_img			*east;
 
-}			t_game;
+}					t_game;
 
 typedef struct s_wall_textures
 {
@@ -82,9 +84,15 @@ typedef struct s_cub3d
 
 /*  PARSING */
 int					file_validation(char *map_file, t_cub3d *cub3d);
+int	                ft_validate_texture_line(char *line, int i, char flag,
+		                t_cub3d *cub3d);
+int             	ft_validate_color_line(char *line, int i, char flag,
+		                t_cub3d *cub3d);
+int					ft_check_map_extensions(char *map_file_name,
+						char *extension);
 
 /*  ERROR_HANDLING  */
-void	ft_error(const char *error_msg);
-void	ft_error_exit(const char *error_msg);
+void				ft_error(const char *error_msg);
+void				ft_error_exit(const char *error_msg);
 
 #endif
