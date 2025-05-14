@@ -3,7 +3,7 @@ MAKEFLAGS += --no-print-directory
 NAME	=	build/cub3D
 
 CC		=	cc
-C_FLAGS	=	-Wall -Werror -Wextra -g3
+C_FLAGS	=	-Wall -Werror -Wextra
 LIBS 	=	-lm -L mlx/ -lXext -lX11
 
 SRC_DIR		=	source
@@ -14,7 +14,7 @@ LIBFT_LIB	=	include/libft/build/libft.a
 MLX_DIR		=	minilibx-linux
 MLX_LIB		=	$(MLX_DIR)/libmlx.a
 
-EXECUTION	=	
+EXECUTION	=	xpm raycast_utils
 PARSING		=	
 
 SRC_FILES 	=	$(addsuffix .c, $(addprefix source/execution/, $(EXECUTION))) \
