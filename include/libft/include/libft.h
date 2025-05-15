@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 13:33:58 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/03/03 17:58:02 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:18:46 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,13 @@ int		ft_putstr(int fd, char *c);
 int		ft_putnbr_base(int fd, int n, char *base);
 int		ft_putnbr_hex(int fd, int n, char *base);
 int		ft_put_pointr(int fd, void *n, int flag);
+
+/*
+	MATRIX
+*/
+void	ft_free_matrix(char **matrix);
+void	ft_print_matrix(char **matrix);
+
+int		ft_matrix_len(char	**mtx);
 
 #endif /* LIBFT_H*/

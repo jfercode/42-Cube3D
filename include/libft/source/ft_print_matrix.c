@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_matrix.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/15 12:20:15 by jaferna2         ###   ########.fr       */
+/*   Created: 2025/05/15 11:41:52 by jaferna2          #+#    #+#             */
+/*   Updated: 2025/05/15 11:43:00 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/libft.h"
 
-int	main(int ac, char **av)
+void	ft_print_matrix(char **matrix)
 {
-	t_cub3d	*basic_str;
+	int	i;
 
-	basic_str = malloc(sizeof(t_cub3d));
-	if (!basic_str->wall_textures)
-		basic_str->wall_textures = malloc(sizeof(t_wall_textures));
-	if (!basic_str || !basic_str->wall_textures)
-		return (1);
-	if (ac < 2)
-		return (1);
-	else
+	i = 0;
+	while (matrix[i])
 	{
-		if (file_validation(av[1], basic_str) == SUCCESS)
-			printf("ok\n");
+		printf(GREEN"matrix[%d]:"RST" %s\n", i, matrix[i]);
+		i++;
 	}
-	return (0);
 }

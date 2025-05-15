@@ -3,27 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   texture_validation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:14:09 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/13 17:04:26 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:12:39 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static char	*ft_strip_newline(char *str)
+static int	ft_assign_textures(char *cleaned, char flag, t_cub3d *cub3d)
 {
-	int		len;
-	char	*cleaned;
-
-	if (!str)
-		return (NULL);
-	len = ft_strlen(str);
-	if (len > 0 && str[len - 1] == '\n')
-		len--;
-	cleaned = ft_substr(str, 0, len);
-	return (cleaned);
+	if (flag == 'N')
+	{
+		if (cub3d->wall_textures->north != NULL)	
+			return (ft_printf(STDERR_FILENO, "Error:\n Duplicated NO texture\n"), FAIL);
+		cub3d->wall_textures->north = ft_strdup(cleaned);
+	}
+	else if (flag == 'S')
+	{
+		if (cub3d->wall_textures->south != NULL)
+			return (ft_printf(STDERR_FILENO, "Error:\n Duplicated SO texture\n"), FAIL);
+		cub3d->wall_textures->south = ft_strdup(cleaned);
+	}
+	else if (flag == 'W')
+	{
+		if (cub3d->wall_textures->west != NULL)
+			return (ft_printf(STDERR_FILENO, "Error:\n Duplicated WE texture\n"), FAIL);
+		cub3d->wall_textures->west = ft_strdup(cleaned);
+	}
+	else if (flag == 'E')
+	{
+		if (cub3d->wall_textures->east != NULL)
+			return (ft_printf(STDERR_FILENO, "Error:\n Duplicated EA texture\n"), FAIL);
+		cub3d->wall_textures->east = ft_strdup(cleaned);
+	}
+	return (free(cleaned), SUCCESS);
 }
 
 int	ft_validate_texture_line(char *line, int i, char flag,
@@ -42,16 +57,10 @@ int	ft_validate_texture_line(char *line, int i, char flag,
 	if (ft_check_map_extensions(cleaned, ".xpm"))
 	{
 		close(fd);
-		if (flag == 'N')
-			cub3d->wall_textures->north = ft_strdup(cleaned);
-		else if (flag == 'S')
-			cub3d->wall_textures->south = ft_strdup(cleaned);
-		else if (flag == 'W')
-			cub3d->wall_textures->west = ft_strdup(cleaned);
-		else if (flag == 'E')
-			cub3d->wall_textures->east = ft_strdup(cleaned);
-		return (free(cleaned), SUCCESS);
+		if (ft_assign_textures(cleaned, flag, cub3d))
+			return (SUCCESS);
+		else
+			return (FAIL);
 	}
 	return (FAIL);
 }
-

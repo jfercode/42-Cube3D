@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/13 17:03:28 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:53:30 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,10 @@ typedef struct s_wall_textures
 typedef struct s_cub3d
 {
 	char			**map;
-	char			*floor_color;
-	char			*ceiling_color;
+	int				floor_rgb[3];
+	int				ceiling_rgb[3];
+	bool			floor_assigned;
+	bool			ceiling_assigned;
 	t_wall_textures	*wall_textures;
 }					t_cub3d;
 
@@ -90,6 +92,8 @@ int             	ft_validate_color_line(char *line, int i, char flag,
 		                t_cub3d *cub3d);
 int					ft_check_map_extensions(char *map_file_name,
 						char *extension);
+
+char				*ft_strip_newline(char *str);
 
 /*  ERROR_HANDLING  */
 void				ft_error(const char *error_msg);
