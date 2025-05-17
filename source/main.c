@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/15 12:20:15 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:28:23 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 	else
 	{
 		if (file_validation(av[1], basic_str) == SUCCESS)
-			printf("ok\n");
+			ft_printf(STDOUT_FILENO, "OK\n");
 	}
 	return (0);
 }

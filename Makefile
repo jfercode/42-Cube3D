@@ -15,7 +15,8 @@ MLX_DIR		=	minilibx-linux
 MLX_LIB		=	$(MLX_DIR)/libmlx.a
 
 EXECUTION	=	
-PARSING		=	file_validation texture_validation color_validation
+PARSING		=	file_validation texture_validation color_validation \
+				parsing_utils map_storation map_validation map_closed_validation 
 ERROR 		=	error_handling 
 
 SRC_FILES 	=	$(addsuffix .c, $(addprefix source/execution/, $(EXECUTION))) \
