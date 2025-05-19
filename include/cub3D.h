@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/19 14:09:53 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:40:04 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define TILE_SIZE 64
 # define FOV (M_PI / 3)
 # define NUM_RAYS WIN_WIDTH
-# define TILE_SIZE 64
 # define MAX_DEPTH 1000.0
 
 # define K_ESC 65307
@@ -72,9 +71,13 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	double		x;
-	double		y;
 	double		dir;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 }				t_player;
 
 typedef struct s_tile
@@ -92,16 +95,13 @@ typedef struct s_game
 {
 	t_player	player;
 	t_map		*map;
-
 	t_tile		*north;
 	t_tile		*south;
 	t_tile		*west;
 	t_tile		*east;
 	t_tile		*frame;
-
 	void		*mlx;
 	void		*window;
-
 	int			width;
 	int			height;
 
@@ -109,54 +109,49 @@ typedef struct s_game
 
 typedef struct s_ray_cast
 {
-	//delta is the distance to the next grid line
 	double		delta_dist_x;
 	double		delta_dist_y;
-	//side_dist is the distance to the next wall
+	double		distance;
 	double		side_dist_x;
 	double		side_dist_y;
 	double		dir_x;
 	double		dir_y;
 	double		cam_x;
-	//map is the current grid square
 	int			map_x;
 	int			map_y;
-	//step is the direction to step in x or y
 	int			step_x;
 	int			step_y;
+	double		angle_step;
 	int			x;
-	//if a wall was hit and the direction of the wall
 	int			hit;
 	int			side;
 	int 		ray;
-	double		ray_angle;
 	double		ray_x;
 	double		ray_y;
-	double		angle_step;
-	double		distance;
+	double		ray_angle;
+	double		dx;
+	double		dy;
 }				t_ray_cast;
 
 /* PARSING */
 
 /* EXECUTION */
+//main.c
 void			ft_error(char *str);
-
 void			init_game(t_game *game, t_map *map);
 void			start_game(t_game *game, t_map *map);
 int				close_game(t_game *game);
-
+//xpm.c
 void			assign_images(t_game *game, t_map *map);
-
+//raycast.c
 int				raycast(t_game *game);
-void			calc_distance(t_ray_cast *rc, t_game *game);
-double			fix_distortion(double *ray_x, double *ray_y, double player_x,
-					double player_y);
-
+//raycast_utils.c
+void			calculate_distance(t_ray_cast *rc, t_game *game);
 void			put_pixel_frame(t_tile *frame, int x, int y, int color);
 t_tile			*get_texture(t_game *game, int side, double ray_angle);
 void			draw(int wall_top, int wall_bottom, t_ray_cast *rc, t_game *game);
-
-
+//key_mapping.c
+int				key_input(int keycode, t_game *game);
 
 
 #endif
