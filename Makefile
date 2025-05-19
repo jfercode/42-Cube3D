@@ -14,7 +14,7 @@ LIBFT_LIB	=	include/libft/build/libft.a
 MLX_DIR		=	minilibx-linux
 MLX_LIB		=	$(MLX_DIR)/libmlx.a
 
-EXECUTION	=	xpm raycast_utils
+EXECUTION	=	xpm raycast_utils raycast
 PARSING		=	
 
 SRC_FILES 	=	$(addsuffix .c, $(addprefix source/execution/, $(EXECUTION))) \

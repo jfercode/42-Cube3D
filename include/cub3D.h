@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/14 18:11:56 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:09:53 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 # include <sys/types.h>
 # include <unistd.h>
 
-# define WIN_HEIGHT 2048
-# define WIN_WIDTH 2048
+# define WIN_HEIGHT 540
+# define WIN_WIDTH 720
 # define TILE_SIZE 64
 # define FOV (M_PI / 3)
-# define NUM_RAYS 640
+# define NUM_RAYS WIN_WIDTH
 # define TILE_SIZE 64
 # define MAX_DEPTH 1000.0
 
@@ -107,6 +107,35 @@ typedef struct s_game
 
 }				t_game;
 
+typedef struct s_ray_cast
+{
+	//delta is the distance to the next grid line
+	double		delta_dist_x;
+	double		delta_dist_y;
+	//side_dist is the distance to the next wall
+	double		side_dist_x;
+	double		side_dist_y;
+	double		dir_x;
+	double		dir_y;
+	double		cam_x;
+	//map is the current grid square
+	int			map_x;
+	int			map_y;
+	//step is the direction to step in x or y
+	int			step_x;
+	int			step_y;
+	int			x;
+	//if a wall was hit and the direction of the wall
+	int			hit;
+	int			side;
+	int 		ray;
+	double		ray_angle;
+	double		ray_x;
+	double		ray_y;
+	double		angle_step;
+	double		distance;
+}				t_ray_cast;
+
 /* PARSING */
 
 /* EXECUTION */
@@ -114,22 +143,20 @@ void			ft_error(char *str);
 
 void			init_game(t_game *game, t_map *map);
 void			start_game(t_game *game, t_map *map);
-// void			draw_map(t_game *game, t_map *map);
-// void			get_tiles(t_game *game, t_map *map, int x, int y);
 int				close_game(t_game *game);
 
 void			assign_images(t_game *game, t_map *map);
 
 int				raycast(t_game *game);
-void			calc_distance(double *distance, t_game *game, t_map *map,
-					t_player *player, double ray_angle);
+void			calc_distance(t_ray_cast *rc, t_game *game);
 double			fix_distortion(double *ray_x, double *ray_y, double player_x,
 					double player_y);
 
-int				get_tex_color(t_tile *tex, int x, int y);
-t_tile			*get_texture(t_game *game, double ray_x, double ray_y,
-					double ray_angle);
-void			draw(int wall_top, int wall_bottom, int ray, t_game *game,
-					double ray_x, double ray_y, double ray_angle);
+void			put_pixel_frame(t_tile *frame, int x, int y, int color);
+t_tile			*get_texture(t_game *game, int side, double ray_angle);
+void			draw(int wall_top, int wall_bottom, t_ray_cast *rc, t_game *game);
+
+
+
 
 #endif
