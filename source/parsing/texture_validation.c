@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_validation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:14:09 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/17 17:54:00 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:23:06 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,19 @@ int	ft_validate_texture_line(char *line, int i, char flag,
 	while ((line[i] >= 9 && line[i] <= 13) || line[i] == 32)
 		i++;
 	cleaned = ft_strip_newline(&line[i]);
+	if (!cleaned)
+		return (FAIL);
 	fd = open(cleaned, O_RDONLY);
 	if (fd < 0)
 		return (ft_printf(STDERR_FILENO, "Error:\nDoesn't exist file: %s\n",
 				cleaned), FAIL);
-	if (ft_check_map_extensions(cleaned, ".xpm"))
+	if (ft_check_file_extensions(cleaned, ".xpm"))
 	{
 		close(fd);
 		if (ft_assign_textures(cleaned, flag, cub3d))
 			return (SUCCESS);
 		else
-			return (FAIL);
+			return (free(cleaned), FAIL);
 	}
-	return (FAIL);
+	return (free (cleaned), FAIL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_validation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:13:36 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/17 18:01:24 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:46:24 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static int	ft_parse_identifier(char *line, int i, t_cub3d *cub3d)
 		return (ft_validate_color_line(line, i + 1, 'C', cub3d));
 	else if (ft_strncmp("F", &line[i], 1) == 0)
 		return (ft_validate_color_line(line, i + 1, 'F', cub3d));
-	return (SUCCESS);
+	return (FAIL);
 }
 
-static	int	ft_check_for_all_variables(t_cub3d *cub3d)
+static	int	ft_check_for_variables(t_cub3d *cub3d)
 {
 	if (!cub3d->wall_textures->north)
 		return (ft_printf(STDERR_FILENO, "Error:\nMissing north texture\n"), FAIL);
@@ -59,7 +59,7 @@ static int	ft_line_analisis(char *line, t_cub3d *cub3d)
 		return (SUCCESS);
 	if (ft_strchr("1", line[i]))
 	{
-		if (ft_check_for_all_variables(cub3d) == SUCCESS)
+		if (ft_check_for_variables(cub3d) == SUCCESS)
 			cub3d->map_started = true;
 		else
 			return (ft_printf(STDERR_FILENO,
@@ -72,20 +72,38 @@ static int	ft_line_analisis(char *line, t_cub3d *cub3d)
 	return (ft_parse_identifier(line, i, cub3d));
 }
 
+static int	ft_check_all(t_cub3d *cub3d)
+{
+	if (!cub3d->wall_textures->north)
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing north texture\n"), FAIL);
+	else if (!cub3d->wall_textures->south)
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing south texture\n"), FAIL);
+	else if (!cub3d->wall_textures->west)
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing west texture\n"), FAIL);
+	else if (!cub3d->wall_textures->east)
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing east texture\n"), FAIL);
+	else if (cub3d->ceiling_assigned == false)
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing ceiling color\n"), FAIL);
+	else if (cub3d->floor_assigned == false)
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing floor color\n"), FAIL);
+	else if (!cub3d->map)
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing map\n"), FAIL);
+	return (SUCCESS);
+}
 /*
-	1. Extension .cub DONE
+	1. Extension .cub
 	2. read file until
 		2.1 Texture NO, SO, WE, EA -> DONE 
 		2.2 Color F, C -> DONE 
 		2.3 Map
 	3. Check all variables
 */
-int	file_validation(char *map_file, t_cub3d *cub3d)
+int	ft_file_validation(char *map_file, t_cub3d *cub3d)
 {
 	char	*line;
 	int		fd;
 
-	if (!ft_check_map_extensions(map_file, ".cub"))
+	if (!ft_check_file_extensions(map_file, ".cub"))
 		return (FAIL);
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
@@ -94,16 +112,13 @@ int	file_validation(char *map_file, t_cub3d *cub3d)
 	line = ft_get_next_line(fd);
 	while (line != NULL)
 	{
-		// ft_printf(STDOUT_FILENO, "line: %s", line);
 		if (ft_line_analisis(line, cub3d) == FAIL)
 			return (free(line), close(fd), FAIL);
-		if (cub3d->map_started)
+		if (cub3d->map_started == true)
 			return (ft_store_map_lines(fd, line, cub3d));
 		free(line);
 		line = ft_get_next_line(fd);
 	}
 	close(fd);
-	// if (ft_check_for_all_variables(cub3d) == false)
-	// 	return (FAIL);
-	return (SUCCESS);
+	return (ft_check_all(cub3d));
 }

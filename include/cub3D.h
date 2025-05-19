@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/17 18:27:13 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:23:06 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ typedef struct s_wall_textures
 
 typedef struct s_cub3d
 {
-	char			**map;
 	int				floor_rgb[3];
 	int				ceiling_rgb[3];
 	char			player_dir;
@@ -86,15 +85,19 @@ typedef struct s_cub3d
 	bool			floor_assigned;
 	bool			ceiling_assigned;
 	t_wall_textures	*wall_textures;
+	char			**map;
 }					t_cub3d;
 
 /*  PARSING */
-int					file_validation(char *map_file, t_cub3d *cub3d);
+void				ft_print_cub3d(t_cub3d *cub3d);
+void				ft_free_cub3d(t_cub3d *cub3d);
+
+int					ft_file_validation(char *map_file, t_cub3d *cub3d);
 int	                ft_validate_texture_line(char *line, int i, char flag,
 		                t_cub3d *cub3d);
 int             	ft_validate_color_line(char *line, int i, char flag,
 		                t_cub3d *cub3d);
-int					ft_check_map_extensions(char *map_file_name,
+int					ft_check_file_extensions(char *map_file_name,
 						char *extension);
 int					ft_store_map_lines(int fd, char *first_line,
 						t_cub3d *cub3d);
@@ -102,6 +105,7 @@ int					ft_map_validation(t_cub3d *cub3d);
 int					ft_check_map_closed(t_cub3d *cub3d);
 
 char				*ft_strip_newline(char *str);
+
 
 /*  ERROR_HANDLING  */
 void				ft_error(const char *error_msg);

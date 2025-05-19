@@ -3,7 +3,7 @@ MAKEFLAGS += --no-print-directory
 NAME	=	cub3D
 
 CC		=	cc
-C_FLAGS	=	-Wall -Werror -Wextra -g3
+C_FLAGS	=	-Wall -Werror -Wextra -g3 -O0
 LIBS 	=	-lm -L mlx/ -lXext -lX11
 
 SRC_DIR		=	source
@@ -16,7 +16,8 @@ MLX_LIB		=	$(MLX_DIR)/libmlx.a
 
 EXECUTION	=	
 PARSING		=	file_validation texture_validation color_validation \
-				parsing_utils map_storation map_validation map_closed_validation 
+				parsing_utils map_storation map_validation map_closed_validation \
+				memory_free
 ERROR 		=	error_handling 
 
 SRC_FILES 	=	$(addsuffix .c, $(addprefix source/execution/, $(EXECUTION))) \
@@ -46,7 +47,7 @@ $(NAME): $(LIBFT_LIB) $(OBJS) $(MLX_LIB)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		@mkdir -p $(dir $@)
 		@echo -n "$(GREEN)█$(RESET)"
-		@$(CC) $(CFLAGS) -c $< -o $@
+		@$(CC) $(C_FLAGS) -c $< -o $@
 
 $(LIBFT_LIB):
 		@echo -n "$(GREEN)█"
