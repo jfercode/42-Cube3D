@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/19 13:58:18 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:11:55 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,6 @@ void	start_game(t_game *game, t_map *map)
 	game->player.x = 2.5 * TILE_SIZE;
 	game->player.y = 2.5 * TILE_SIZE;
 	game->player.dir = M_PI / 2;
-	game->dir_x = 0;
-	game->dir_y = 1;
-	game->plane_x = 0.66;
-	game->plane_y = 0;
 	// mlx_key_hook(game->window, key_input, game);
 	mlx_hook(game->window, ClientMessage, LeaveWindowMask, close_game, game);
 	mlx_loop_hook(game->mlx, &raycast, game);
