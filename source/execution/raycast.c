@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 11:06:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/19 19:44:04 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:10:10 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static void	get_wall_height(t_game *game, t_ray_cast *rc, double corrected_dist)
 
 int	raycast(t_game *game)
 {
+	printf("RAYCAST");
 	t_ray_cast	*rc;
 	double		corrected_dist;
 
@@ -81,13 +82,13 @@ int	raycast(t_game *game)
 		ft_error("Calloc on ray_cast");
 	rc->ray = 0;
 	rc->angle_step = FOV / NUM_RAYS;
-	rc->ray_angle = game->player.dir - (FOV / 2);
+	rc->ray_angle = game->player->dir - (FOV / 2);
 	while (rc->ray < NUM_RAYS)
 	{
 		rc->hit = 0;
 		rc->distance = 0;
 		calculate_distance(rc, game);
-		corrected_dist = rc->distance * cos(rc->ray_angle - game->player.dir);
+		corrected_dist = rc->distance * cos(rc->ray_angle - game->player->dir);
 		if (corrected_dist < 0.1)
 			corrected_dist = 0.1;
 		get_wall_height(game, rc, corrected_dist);

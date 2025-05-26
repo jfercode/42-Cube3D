@@ -3,7 +3,7 @@ MAKEFLAGS += --no-print-directory
 NAME	=	build/cub3D
 
 CC		=	cc
-C_FLAGS	=	-Wall -Werror -Wextra
+C_FLAGS	=	-Wall -Werror -Wextra -g3
 LIBS 	=	-lm -L mlx/ -lXext -lX11
 
 SRC_DIR		=	source

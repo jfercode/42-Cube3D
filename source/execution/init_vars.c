@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:22:16 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/19 19:45:37 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:39:38 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void get_player_pos(t_game *game, t_map *map)
 		{
 			if (ft_strchr("NSEW", map->map[i][j]) != NULL)
 			{
-				game->player.pos_x = j * TILE_SIZE;
-				game->player.pos_y = i * TILE_SIZE;
+				game->player->pos_x = j * TILE_SIZE;
+				game->player->pos_y = i * TILE_SIZE;
 			}
 			j++;
 		}
@@ -36,13 +36,16 @@ static void get_player_pos(t_game *game, t_map *map)
 
 static void init_player(t_game *game, t_map *map)
 {
+	game->player = ft_calloc(sizeof(t_player), 1);
+	if (!game->player)
+		ft_error("Calloc in init_player");
     get_player_pos(game, map);
-	game->player.dir = M_PI / 2;
+	game->player->dir = M_PI / 2;
 	//vvv this should change depending on NSEW
-	game->player.dir_x = 0;
-	game->player.dir_y = 0;
-	game->player.plane_x = 0;
-	game->player.plane_y = 0;
+	game->player->dir_x = 0;
+	game->player->dir_y = 0;
+	game->player->plane_x = 0;
+	game->player->plane_y = 0;
 }
 
 static void	init_textures(t_game *game)
@@ -75,6 +78,7 @@ void	init_game(t_game *game, t_map *map)
 	game->map = map;
 	game->height = WIN_HEIGHT;
 	game->width = WIN_WIDTH;
+	game->keys = ft_calloc(sizeof(t_keys), 1);
 	init_textures(game);
 	assign_images(game, map);
 	init_player(game, map);
