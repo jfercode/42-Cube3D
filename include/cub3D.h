@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 18:47:16 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:51:54 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ typedef struct s_wall_textures
 
 typedef struct s_cub3d
 {
-	char			**map;
 	int				floor_rgb[3];
 	int				ceiling_rgb[3];
 	char			player_dir;
@@ -136,6 +135,7 @@ typedef struct s_cub3d
 	bool			floor_assigned;
 	bool			ceiling_assigned;
 	t_wall_textures	*wall_textures;
+	char			**map;
 }					t_cub3d;
 
 typedef struct s_ray_cast
@@ -165,12 +165,15 @@ typedef struct s_ray_cast
 }				t_ray_cast;
 
 /*  PARSING */
-int					file_validation(char *map_file, t_cub3d *cub3d);
-int	                ft_validate_texture_line(char *line, int i, char flag,
-		                t_cub3d *cub3d);
-int             	ft_validate_color_line(char *line, int i, char flag,
-		                t_cub3d *cub3d);
-int					ft_check_map_extensions(char *map_file_name,
+void				ft_print_cub3d(t_cub3d *cub3d);
+void				ft_free_cub3d(t_cub3d *cub3d);
+
+int					ft_file_validation(char *map_file, t_cub3d *cub3d);
+int					ft_validate_texture_line(char *line, int i, char flag,
+						t_cub3d *cub3d);
+int					ft_validate_color_line(char *line, int i, char flag,
+						t_cub3d *cub3d);
+int					ft_check_file_extensions(char *map_file_name,
 						char *extension);
 int					ft_store_map_lines(int fd, char *first_line,
 						t_cub3d *cub3d);

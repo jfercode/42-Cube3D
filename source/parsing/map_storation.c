@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_storation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:55:55 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/17 17:57:04 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:30:52 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,26 @@ int	ft_store_map_lines(int fd, char *first_line, t_cub3d *cub3d)
 {
 	char	*line;
 	t_list	*map_lines;
-	
+
 	map_lines = NULL;
 	ft_lstadd_back(&map_lines, ft_lstnew(ft_strip_newline(first_line)));
+	free(first_line);
 	line = ft_get_next_line(fd);
-	while (line != NULL) 
+	while (line != NULL)
 	{
 		if (ft_is_line_empty(line))
 		{
-			free (line);
+			free(line);
 			break ;
 		}
 		ft_lstadd_back(&map_lines, ft_lstnew(ft_strip_newline(line)));
-		free (line);
+		free(line);
 		line = ft_get_next_line(fd);
 	}
 	cub3d->map = ft_lst_to_mtx(map_lines, cub3d->map);
 	ft_lstclear(&map_lines, free);
 	if (!cub3d->map)
-		return (ft_printf(STDERR_FILENO, "Error:\nMap allocation failed\n"), FAIL);
-	return (SUCCESS);
+		return (ft_printf(STDERR_FILENO, "Error:\nMap allocation failed\n"),
+			FAIL);
+	return (ft_map_validation(cub3d));
 }
