@@ -1,6 +1,6 @@
 MAKEFLAGS += --no-print-directory
 
-NAME	=	build/cub3D
+NAME	=	cub3D
 
 CC		=	cc
 C_FLAGS	=	-Wall -Werror -Wextra -g3
@@ -14,11 +14,14 @@ LIBFT_LIB	=	include/libft/build/libft.a
 MLX_DIR		=	minilibx-linux
 MLX_LIB		=	$(MLX_DIR)/libmlx.a
 
+PARSING		=	file_validation texture_validation color_validation \
+				parsing_utils map_storation map_validation map_closed_validation 
+ERROR 		=	error_handling 
 EXECUTION	=	init_vars xpm key_mapping raycast raycast_utils cleaner
-PARSING		=	
 
 SRC_FILES 	=	$(addsuffix .c, $(addprefix source/execution/, $(EXECUTION))) \
 	  			$(addsuffix .c, $(addprefix source/parsing/, $(PARSING))) \
+	  			$(addsuffix .c, $(addprefix source/error_handling/, $(ERROR))) \
 				source/main.c
 
 OBJS 		=	$(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -35,12 +38,10 @@ all: $(NAME)
 $(OBJ_DIR):
 		@mkdir -p $(OBJ_DIR)
 
-$(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJS)
-		@mkdir -p $(OBJ_DIR)
-		@ar rcs $@ $^
+$(NAME): $(LIBFT_LIB) $(OBJS) $(MLX_LIB)
 		@echo -n "$(GREEN)█$(RESET)"
-		@$(CC) $(CFLAGS) -o cub3D $(OBJ_DIR)/main.o $(NAME) $(LIBFT_LIB) $(MLX_LIB) $(LIBS)
-		@echo -n "\n$(BLUE)READY TO EXECUTE.   $(RESET)"
+		@$(CC) $(C_FLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LIB) $(LIBS)
+		@echo -n "\n$(BLUE)READY TO EXECUTE.\n$(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		@mkdir -p $(dir $@)

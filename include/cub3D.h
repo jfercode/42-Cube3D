@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 18:25:35 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:47:16 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,26 @@
 # include <sys/types.h>
 # include <unistd.h>
 
+# ifndef TILE_SIZE
+#  define TILE_SIZE 64
+# endif
+
+# define FAIL 0
+# define SUCCESS 1
+
+# define K_ESC 65307
+# define K_A 97
+# define K_D 100
+# define K_S 115
+# define K_W 119
+# define K_AR_R 65363
+# define K_AR_L 65361
 # define WIN_HEIGHT 540
 # define WIN_WIDTH 720
 # define TILE_SIZE 64
 # define FOV (M_PI / 3)
 # define NUM_RAYS WIN_WIDTH
 # define MAX_DEPTH 1000.0
-
-
-
-typedef enum e_keys
-{
-	K_ESC = 65307,
-	K_A = 97,
-	K_D = 100,
-	K_S = 115,
-	K_W = 119,
-	K_AR_R = 65363,
-	K_AR_L = 65361,
-}				t_keys;
 
 typedef struct s_paths
 {
@@ -67,12 +68,15 @@ typedef struct s_colors
 
 typedef struct s_map
 {
-	t_paths		*paths;
-	t_colors	*colors;
-	char		**map;
-	int			width;
-	int			height;
-}				t_map;
+	char			*n_text;
+	char			*s_text;
+	char			*w_text;
+	char			*e_text;
+	char			*f_color;
+	char			*c_color;
+	int				line;
+	int				col;
+}					t_map;
 
 typedef struct s_player
 {
@@ -95,7 +99,6 @@ typedef struct s_tile
 	int			size_line;
 	int			endian;
 }				t_tile;
-
 typedef struct s_game
 {
 	t_player	*player;
@@ -112,6 +115,28 @@ typedef struct s_game
 	int			height;
 
 }				t_game;
+
+typedef struct s_wall_textures
+{
+	char			*north;
+	char			*south;
+	char			*east;
+	char			*west;
+}					t_wall_textures;
+
+typedef struct s_cub3d
+{
+	char			**map;
+	int				floor_rgb[3];
+	int				ceiling_rgb[3];
+	char			player_dir;
+	int				player_x;
+	int				player_y;
+	bool			map_started;
+	bool			floor_assigned;
+	bool			ceiling_assigned;
+	t_wall_textures	*wall_textures;
+}					t_cub3d;
 
 typedef struct s_ray_cast
 {
@@ -139,25 +164,41 @@ typedef struct s_ray_cast
 	double		dy;
 }				t_ray_cast;
 
-/* PARSING */
+/*  PARSING */
+int					file_validation(char *map_file, t_cub3d *cub3d);
+int	                ft_validate_texture_line(char *line, int i, char flag,
+		                t_cub3d *cub3d);
+int             	ft_validate_color_line(char *line, int i, char flag,
+		                t_cub3d *cub3d);
+int					ft_check_map_extensions(char *map_file_name,
+						char *extension);
+int					ft_store_map_lines(int fd, char *first_line,
+						t_cub3d *cub3d);
+int					ft_map_validation(t_cub3d *cub3d);
+int					ft_check_map_closed(t_cub3d *cub3d);
+
+char				*ft_strip_newline(char *str);
+
+/*  ERROR_HANDLING  */
+void				ft_error(const char *error_msg);
+void				ft_error_exit(const char *error_msg);
 
 /* EXECUTION */
-// main.c
-void			ft_error(char *str);
+
 void			init_game(t_game *game, t_map *map);
 void			start_game(t_game *game, t_map *map);
 int				close_game(t_game *game);
-// xpm.c
+
 void			assign_images(t_game *game, t_map *map);
-// raycast.c
+
 int				raycast(t_game *game);
-// raycast_utils.c
+
 void			calculate_distance(t_ray_cast *rc, t_game *game);
 void			put_pixel_frame(t_tile *frame, int x, int y, int color);
 t_tile			*get_texture(t_game *game, int side, double ray_angle);
 void			draw(int wall_top, int wall_bottom, t_ray_cast *rc,
 					t_game *game);
-// key_mapping.c
+
 int				key_input(int keycode, t_game *game);
 int				loop_hook(t_game *game);
 int				key_release(int keycode, t_game *game);

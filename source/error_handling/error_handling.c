@@ -1,0 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/12 18:21:57 by jaferna2          #+#    #+#             */
+/*   Updated: 2025/05/12 19:25:44 by jaferna2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/cub3D.h"
+
+/**
+ * @brief Prints an error message and terminates the program.
+ *
+ * This function prints the provided error message in red and
+ * This function prints the provided error message in red and
+ * then exits the program with a failure status.
+ *
+ * @param error_msg A pointer to a null-terminated string containing
+ * @param error_msg A pointer to a null-terminated string containing
+ * the error message to display.
+ */
+void	ft_error_exit(const char *error_msg)
+{
+	printf("%s: %s\n", error_msg, strerror(errno));
+	exit(EXIT_FAILURE);
+}
+
+/**
+ * @brief Prints an error message.
+ *
+ * This function prints the provided error message in red.
+ *
+ * @param error_msg A pointer to a null-terminated string containing
+ * the error message to display.
+ */
+void	ft_error(const char *error_msg)
+{
+	printf("%s: %s\n", error_msg, strerror(errno));
+}

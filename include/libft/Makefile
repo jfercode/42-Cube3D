@@ -28,6 +28,7 @@ SRC_FILES = 	$(SRC_DIR)/ft_atoi.c		$(SRC_DIR)/ft_atol.c	$(SRC_DIR)/ft_bzero.c	\
 				$(SRC_DIR)/ft_strmapi.c		$(SRC_DIR)/ft_strncmp.c	$(SRC_DIR)/ft_strnstr.c	\
 				$(SRC_DIR)/ft_strrchr.c		$(SRC_DIR)/ft_strtrim.c	$(SRC_DIR)/ft_substr.c	\
 				$(SRC_DIR)/ft_tolower.c		$(SRC_DIR)/ft_toupper.c	$(SRC_DIR)/ft_strarrlen.c	\
+				$(SRC_DIR)/ft_print_matrix.c	$(SRC_DIR)/ft_free_matrix.c		$(SRC_DIR)/ft_matrix_len.c \
 
 OBJS = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

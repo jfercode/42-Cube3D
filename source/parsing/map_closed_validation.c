@@ -1,0 +1,88 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_closed_validation.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/17 18:16:05 by jaferna2          #+#    #+#             */
+/*   Updated: 2025/05/17 18:26:15 by jaferna2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/cub3D.h"
+
+static char	**ft_expand_map(char **map)
+{
+	int		width;
+	int		height;
+	int		i;
+	char	**new_map;
+
+	width = 0;
+	height = 0;
+	i = 0;
+	while (map[height])
+	{
+		if ((int)ft_strlen(map[height]) > width)
+			width = ft_strlen(map[height]);
+		height++;
+	}
+	new_map = malloc(sizeof(char *) * (height + 1));
+	if (!new_map)
+		return (NULL);
+	while (i < height)
+	{
+		new_map[i] = ft_calloc(width + 1, sizeof(char));
+		if (!new_map[i])
+			return (ft_free_matrix(new_map), NULL);
+		ft_memset(new_map[i], ' ', width);
+		ft_memcpy(new_map[i], map[i], ft_strlen(map[i]));
+		i++;
+	}
+	new_map[i] = NULL;
+	return (new_map);
+}
+
+static void	ft_flood_fill(char **map, int x, int y)
+{
+	if (!map[y] || x < 0 || y < 0 || !map[y][x])
+		return ;
+	if (map[y][x] == ' ' || map[y][x] == 'X')
+		return ;
+	if (map[y][x] == '0' || ft_strchr("NSEW", map[y][x]))
+		map[y][x] = 'X';
+	else
+		return ;
+	ft_flood_fill(map, x + 1, y);
+	ft_flood_fill(map, x - 1, y);
+	ft_flood_fill(map, x, y + 1);
+	ft_flood_fill(map, x, y - 1);
+}
+
+int	ft_check_map_closed(t_cub3d *cub3d)
+{
+	char	**map_copy;
+	int		i;
+
+	map_copy = ft_expand_map(cub3d->map);
+	if (!map_copy)
+		return (FAIL);
+	ft_flood_fill(map_copy, cub3d->player_x, cub3d->player_y);
+	i = 0;
+	while (map_copy[i])
+	{
+		if (ft_strchr(map_copy[i], '0') || ft_strchr(map_copy[i], 'N') 
+			|| ft_strchr(map_copy[i], 'S') 
+			|| ft_strchr(map_copy[i], 'E') 
+			|| ft_strchr(map_copy[i], 'W'))
+		{
+			ft_printf(STDERR_FILENO, "Error:\nMap is not closed\n");
+			ft_free_matrix(map_copy);
+			return (FAIL);
+		}
+		i++;
+	}
+	ft_free_matrix(map_copy);
+	return (SUCCESS);
+}
