@@ -3,31 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   map_closed_validation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 18:16:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/17 18:26:15 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:30:11 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static char	**ft_expand_map(char **map)
+static char	**ft_expand_map_02(char **map, int width, int height, int i)
 {
-	int		width;
-	int		height;
-	int		i;
 	char	**new_map;
 
-	width = 0;
-	height = 0;
-	i = 0;
-	while (map[height])
-	{
-		if ((int)ft_strlen(map[height]) > width)
-			width = ft_strlen(map[height]);
-		height++;
-	}
 	new_map = malloc(sizeof(char *) * (height + 1));
 	if (!new_map)
 		return (NULL);
@@ -42,6 +30,24 @@ static char	**ft_expand_map(char **map)
 	}
 	new_map[i] = NULL;
 	return (new_map);
+}
+
+static char	**ft_expand_map(char **map)
+{
+	int		width;
+	int		height;
+	int		i;
+
+	width = 0;
+	height = 0;
+	i = 0;
+	while (map[height])
+	{
+		if ((int)ft_strlen(map[height]) > width)
+			width = ft_strlen(map[height]);
+		height++;
+	}
+	return (ft_expand_map_02(map, width, height, i));
 }
 
 static void	ft_flood_fill(char **map, int x, int y)
@@ -72,9 +78,8 @@ int	ft_check_map_closed(t_cub3d *cub3d)
 	i = 0;
 	while (map_copy[i])
 	{
-		if (ft_strchr(map_copy[i], '0') || ft_strchr(map_copy[i], 'N') 
-			|| ft_strchr(map_copy[i], 'S') 
-			|| ft_strchr(map_copy[i], 'E') 
+		if (ft_strchr(map_copy[i], '0') || ft_strchr(map_copy[i], 'N')
+			|| ft_strchr(map_copy[i], 'S') || ft_strchr(map_copy[i], 'E')
 			|| ft_strchr(map_copy[i], 'W'))
 		{
 			ft_printf(STDERR_FILENO, "Error:\nMap is not closed\n");

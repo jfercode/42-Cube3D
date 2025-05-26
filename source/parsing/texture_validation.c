@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:14:09 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/19 19:23:06 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:36:30 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@ static int	ft_assign_textures(char *cleaned, char flag, t_cub3d *cub3d)
 {
 	if (flag == 'N')
 	{
-		if (cub3d->wall_textures->north != NULL)	
-			return (ft_printf(STDERR_FILENO, "Error:\nDuplicated NO texture\n"), FAIL);
+		if (cub3d->wall_textures->north != NULL)
+			return (ft_printf(STDERR_FILENO, "Error:\nDup NO texture\n"), FAIL);
 		cub3d->wall_textures->north = ft_strdup(cleaned);
 	}
 	else if (flag == 'S')
 	{
 		if (cub3d->wall_textures->south != NULL)
-			return (ft_printf(STDERR_FILENO, "Error:\nDuplicated SO texture\n"), FAIL);
+			return (ft_printf(STDERR_FILENO, "Error:\nDup SO texture\n"), FAIL);
 		cub3d->wall_textures->south = ft_strdup(cleaned);
 	}
 	else if (flag == 'W')
 	{
 		if (cub3d->wall_textures->west != NULL)
-			return (ft_printf(STDERR_FILENO, "Error:\nDuplicated WE texture\n"), FAIL);
+			return (ft_printf(STDERR_FILENO, "Error:\nDup WE texture\n"), FAIL);
 		cub3d->wall_textures->west = ft_strdup(cleaned);
 	}
 	else if (flag == 'E')
 	{
 		if (cub3d->wall_textures->east != NULL)
-			return (ft_printf(STDERR_FILENO, "Error:\nDuplicated EA texture\n"), FAIL);
+			return (ft_printf(STDERR_FILENO, "Error:\nDup EA texture\n"), FAIL);
 		cub3d->wall_textures->east = ft_strdup(cleaned);
 	}
 	return (free(cleaned), SUCCESS);

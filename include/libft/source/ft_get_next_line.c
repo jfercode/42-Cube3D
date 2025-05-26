@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:06:13 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/19 19:09:56 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:23:20 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	*ft_get_next_line(int fd)
 {
 	char		*line_readed;
 	static char	*rest[1024];
-	
+
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	rest[fd] = obtain_rest_with_nl(fd, rest[fd]);

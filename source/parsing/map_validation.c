@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:51:49 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/19 17:22:40 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:34:04 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_check_valid_map_chars(char **map)
 	int			i;
 	int			j;
 	const char	*valid = "01NSEW ";
-	
+
 	i = 0;
 	while (map[i])
 	{
@@ -25,8 +25,8 @@ static int	ft_check_valid_map_chars(char **map)
 		while (map[i][j])
 		{
 			if (!ft_strchr(valid, map[i][j]))
-				return(ft_printf(STDERR_FILENO,
-					"Error;\nInvalid character %c in map\n", map[i][j]), FAIL);
+				return (ft_printf(STDERR_FILENO, "Error;\nInvalid character"
+						"%c in map\n", map[i][j]), FAIL);
 			j++;
 		}
 		i++;
@@ -59,7 +59,7 @@ static int	ft_check_single_player(t_cub3d *cub3d)
 		i++;
 	}
 	if (count != 1)
-		return (ft_printf(STDERR_FILENO, "Error:\nInvalid number of player position (%d)\n", count), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nInvalid p_position\n"), FAIL);
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:13:36 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/19 19:46:24 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:26:47 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,26 @@ static int	ft_parse_identifier(char *line, int i, t_cub3d *cub3d)
 	return (FAIL);
 }
 
-static	int	ft_check_for_variables(t_cub3d *cub3d)
+static int	ft_check_for_variables(t_cub3d *cub3d)
 {
 	if (!cub3d->wall_textures->north)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing north texture\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing north texture\n"),
+			FAIL);
 	else if (!cub3d->wall_textures->south)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing south texture\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing south texture\n"),
+			FAIL);
 	else if (!cub3d->wall_textures->west)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing west texture\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing west texture\n"),
+			FAIL);
 	else if (!cub3d->wall_textures->east)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing east texture\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing east texture\n"),
+			FAIL);
 	else if (cub3d->ceiling_assigned == false)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing ceiling color\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing ceiling color\n"),
+			FAIL);
 	else if (cub3d->floor_assigned == false)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing floor color\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing floor color\n"),
+			FAIL);
 	return (SUCCESS);
 }
 
@@ -63,7 +69,7 @@ static int	ft_line_analisis(char *line, t_cub3d *cub3d)
 			cub3d->map_started = true;
 		else
 			return (ft_printf(STDERR_FILENO,
-				"Error:\nIncorrect map in file place\n"), FAIL);
+					"Error:\nIncorrect map in file place\n"), FAIL);
 		return (SUCCESS);
 	}
 	if (cub3d->map_started)
@@ -75,34 +81,37 @@ static int	ft_line_analisis(char *line, t_cub3d *cub3d)
 static int	ft_check_all(t_cub3d *cub3d)
 {
 	if (!cub3d->wall_textures->north)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing north texture\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing north texture\n"),
+			FAIL);
 	else if (!cub3d->wall_textures->south)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing south texture\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing south texture\n"),
+			FAIL);
 	else if (!cub3d->wall_textures->west)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing west texture\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing west texture\n"),
+			FAIL);
 	else if (!cub3d->wall_textures->east)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing east texture\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing east texture\n"),
+			FAIL);
 	else if (cub3d->ceiling_assigned == false)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing ceiling color\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing ceiling color\n"),
+			FAIL);
 	else if (cub3d->floor_assigned == false)
-		return (ft_printf(STDERR_FILENO, "Error:\nMissing floor color\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing floor color\n"),
+			FAIL);
 	else if (!cub3d->map)
 		return (ft_printf(STDERR_FILENO, "Error:\nMissing map\n"), FAIL);
 	return (SUCCESS);
 }
+
 /*
-	1. Extension .cub
-	2. read file until
-		2.1 Texture NO, SO, WE, EA -> DONE 
-		2.2 Color F, C -> DONE 
-		2.3 Map
-	3. Check all variables
+	file validation main function
 */
 int	ft_file_validation(char *map_file, t_cub3d *cub3d)
 {
 	char	*line;
 	int		fd;
 
+	fd = 0;
 	if (!ft_check_file_extensions(map_file, ".cub"))
 		return (FAIL);
 	fd = open(map_file, O_RDONLY);
