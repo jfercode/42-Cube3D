@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 18:51:54 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/26 19:08:42 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,38 +46,6 @@
 # define NUM_RAYS WIN_WIDTH
 # define MAX_DEPTH 1000.0
 
-typedef struct s_paths
-{
-	char		*N_path;
-	char		*S_path;
-	char		*W_path;
-	char		*E_path;
-}				t_paths;
-
-typedef struct s_colors
-{
-	char		*ceiling;
-	char		*floor;
-	int			f_r;
-	int			f_g;
-	int			f_b;
-	int			c_r;
-	int			c_g;
-	int			c_b;
-}				t_colors;
-
-typedef struct s_map
-{
-	char			*n_text;
-	char			*s_text;
-	char			*w_text;
-	char			*e_text;
-	char			*f_color;
-	char			*c_color;
-	int				line;
-	int				col;
-}					t_map;
-
 typedef struct s_player
 {
 	double		dir;
@@ -99,22 +67,6 @@ typedef struct s_tile
 	int			size_line;
 	int			endian;
 }				t_tile;
-typedef struct s_game
-{
-	t_player	*player;
-	t_map		*map;
-	t_tile		*north;
-	t_tile		*south;
-	t_tile		*west;
-	t_tile		*east;
-	t_tile		*frame;
-	int			*keys;
-	void		*mlx;
-	void		*window;
-	int			width;
-	int			height;
-
-}				t_game;
 
 typedef struct s_wall_textures
 {
@@ -137,6 +89,23 @@ typedef struct s_cub3d
 	t_wall_textures	*wall_textures;
 	char			**map;
 }					t_cub3d;
+
+typedef struct s_game
+{
+	t_cub3d		*cub3d;
+	t_player	*player;
+	t_tile		*north;
+	t_tile		*south;
+	t_tile		*west;
+	t_tile		*east;
+	t_tile		*frame;
+	int			*keys;
+	void		*mlx;
+	void		*window;
+	int			width;
+	int			height;
+
+}				t_game;
 
 typedef struct s_ray_cast
 {
@@ -188,11 +157,11 @@ void				ft_error_exit(const char *error_msg);
 
 /* EXECUTION */
 
-void			init_game(t_game *game, t_map *map);
-void			start_game(t_game *game, t_map *map);
+void			init_game(t_game *game, t_cub3d *cub3d);
+void			start_game(t_game *game);
 int				close_game(t_game *game);
 
-void			assign_images(t_game *game, t_map *map);
+void			assign_images(t_game *game);
 
 int				raycast(t_game *game);
 

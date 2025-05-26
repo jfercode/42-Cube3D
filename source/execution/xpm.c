@@ -6,13 +6,13 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:54:01 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 18:39:40 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/26 19:06:36 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static void free_imgs(t_game *game)
+static void	free_imgs(t_game *game)
 {
 	mlx_destroy_image(game->mlx, game->frame->img);
 	mlx_destroy_image(game->mlx, game->north->img);
@@ -23,7 +23,7 @@ static void free_imgs(t_game *game)
 
 static void	xpm_check(t_game *game)
 {
-	if (!game->north->img || !game->south->img || !game->east->img \
+	if (!game->north->img || !game->south->img || !game->east->img
 		|| !game->west->img || !game->frame->img)
 	{
 		free_imgs(game);
@@ -34,17 +34,19 @@ static void	xpm_check(t_game *game)
 	}
 }
 
-void	assign_images(t_game *game, t_map *map)
+void	assign_images(t_game *game)
 {
 	game->frame->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
-	game->north->img = mlx_xpm_file_to_image(game->mlx, map->paths->N_path,
-			&game->north->x, &game->north->y);
-	game->south->img = mlx_xpm_file_to_image(game->mlx, map->paths->S_path,
-			&game->south->x, &game->south->y);
-	game->west->img = mlx_xpm_file_to_image(game->mlx, map->paths->W_path,
-			&game->west->x, &game->west->y);
-	game->east->img = mlx_xpm_file_to_image(game->mlx, map->paths->E_path,
-			&game->east->x, &game->east->y);
+	game->north->img = mlx_xpm_file_to_image(game->mlx,
+			game->cub3d->wall_textures->north, &game->north->x,
+			&game->north->y);
+	game->south->img = mlx_xpm_file_to_image(game->mlx,
+			game->cub3d->wall_textures->south, &game->south->x,
+			&game->south->y);
+	game->west->img = mlx_xpm_file_to_image(game->mlx,
+			game->cub3d->wall_textures->west, &game->west->x, &game->west->y);
+	game->east->img = mlx_xpm_file_to_image(game->mlx,
+			game->cub3d->wall_textures->east, &game->east->x, &game->east->y);
 	xpm_check(game);
 	game->frame->addr = mlx_get_data_addr(game->frame->img, &game->frame->bits,
 			&game->frame->size_line, &game->frame->endian);

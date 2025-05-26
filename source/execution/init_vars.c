@@ -6,24 +6,24 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:22:16 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 18:39:38 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/26 19:10:23 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static void get_player_pos(t_game *game, t_map *map)
+static void get_player_pos(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (map->map[i])
+	while (game->cub3d->map[i])
 	{
 		j = 0;
-		while (map->map[i][j])
+		while (game->cub3d->map[i][j])
 		{
-			if (ft_strchr("NSEW", map->map[i][j]) != NULL)
+			if (ft_strchr("NSEW", game->cub3d->map[i][j]) != NULL)
 			{
 				game->player->pos_x = j * TILE_SIZE;
 				game->player->pos_y = i * TILE_SIZE;
@@ -34,12 +34,12 @@ static void get_player_pos(t_game *game, t_map *map)
 	}
 }
 
-static void init_player(t_game *game, t_map *map)
+static void init_player(t_game *game)
 {
 	game->player = ft_calloc(sizeof(t_player), 1);
 	if (!game->player)
 		ft_error("Calloc in init_player");
-    get_player_pos(game, map);
+    get_player_pos(game);
 	game->player->dir = M_PI / 2;
 	//vvv this should change depending on NSEW
 	game->player->dir_x = 0;
@@ -69,18 +69,19 @@ static void	init_textures(t_game *game)
 	game->frame->y = WIN_HEIGHT;
 }
 
-void	init_game(t_game *game, t_map *map)
+void	init_game(t_game *game, t_cub3d *cub3d)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		ft_error("Couldn't load mlx");
 	game->window = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
-	game->map = map;
-	game->height = WIN_HEIGHT;
-	game->width = WIN_WIDTH;
-	game->keys = ft_calloc(sizeof(t_keys), 1);
+	game->cub3d = cub3d;
+	game->width = ft_strlen(cub3d->map[0]);
+	game->height = 0;
+	while (cub3d->map[game->height])
+		game->height++;
 	init_textures(game);
-	assign_images(game, map);
-	init_player(game, map);
+	assign_images(game);
+	init_player(game);
 }
 

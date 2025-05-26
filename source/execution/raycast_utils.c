@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:45:53 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 17:54:29 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/26 19:11:29 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ static void	get_side(t_ray_cast *rc, t_game *game)
 			rc->map_y += rc->step_y;
 			rc->side = 1;
 		}
-		if (rc->map_y < 0 || rc->map_y >= game->map->height || rc->map_x < 0
-			|| rc->map_x >= game->map->width)
+		if (rc->map_y < 0 || rc->map_y >= game->height || rc->map_x < 0
+			|| rc->map_x >= game->width)
 			break ;
-		if (game->map->map[rc->map_y][rc->map_x] == '1')
+		if (game->cub3d->map[rc->map_y][rc->map_x] == '1')
 			rc->hit = 1;
 	}
 }

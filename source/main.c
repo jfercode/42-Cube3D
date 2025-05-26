@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 18:53:55 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:57:15 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int	main(int ac, char **av)
 	game = ft_calloc(sizeof(t_game), sizeof(t_game));
 	if (!game)
 		return (free(game), 1);
-	init_game(game, map);
-	start_game(game, map);
+	init_game(game, basic_str);
+	start_game(game);
 	ft_free_cub3d(basic_str);
 	return (EXIT_SUCCESS);
 }
 
-void	start_game(t_game *game, t_map *map)
+void	start_game(t_game *game)
 {
 	raycast(game);
 	mlx_hook(game->window, ClientMessage, LeaveWindowMask, close_game, game);

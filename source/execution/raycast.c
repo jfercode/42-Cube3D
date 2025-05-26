@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 11:06:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 18:10:10 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/26 19:16:58 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	draw_ceiling_and_floor(int wall_top, int wall_bottom, t_ray_cast *rc
 		i++;
 	}
 	i = wall_bottom;
-	while (i < game->height)
+	while (i < WIN_HEIGHT)
 	{
 		put_pixel_frame(game->frame, rc->ray, i, 0x420536);
 		i++;
@@ -63,17 +63,16 @@ static void	get_wall_height(t_game *game, t_ray_cast *rc, double corrected_dist)
 	int		wall_bottom;
 	int		wall_top;
 
-	wall_height = (TILE_SIZE * game->height) / corrected_dist;
-	if (wall_height > game->height)
-		wall_height = game->height;
-	wall_top = (game->height / 2) - (wall_height / 2);
+	wall_height = (TILE_SIZE * WIN_HEIGHT) / corrected_dist;
+	if (wall_height > WIN_HEIGHT)
+		wall_height = WIN_HEIGHT;
+	wall_top = (WIN_HEIGHT / 2) - (wall_height / 2);
 	wall_bottom = wall_top + wall_height;
 	draw(wall_top, wall_bottom, rc, game);
 }
 
 int	raycast(t_game *game)
 {
-	printf("RAYCAST");
 	t_ray_cast	*rc;
 	double		corrected_dist;
 
