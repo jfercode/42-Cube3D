@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:11:49 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 19:11:46 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:46:43 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	free_images(t_game *game)
 int	close_game(t_game *game)
 {
 	free_images(game);
+	free(game->player);
 	mlx_destroy_window(game->mlx, game->window);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);

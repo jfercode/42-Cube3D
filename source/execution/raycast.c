@@ -3,30 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 11:06:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/27 16:33:55 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:46:35 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static void	draw_ceiling_and_floor(int wall_top, int wall_bottom, t_ray_cast *rc,
-		t_game *game)
+int	convert_color(int r, int g, int b)
+{
+	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
+}
+
+static void	draw_ceiling_and_floor(int wall_top, int wall_bottom,
+		t_ray_cast *rc, t_game *game)
 {
 	int	i;
 
 	i = 0;
 	while (i < wall_top)
 	{
-		put_pixel_frame(game->frame, rc->ray, i, 0x69B00B);
+		put_pixel_frame(game->frame, rc->ray, i,
+			convert_color(game->cub3d->ceiling_rgb[0],
+				game->cub3d->ceiling_rgb[1], game->cub3d->ceiling_rgb[2]));
 		i++;
 	}
 	i = wall_bottom;
 	while (i < WIN_HEIGHT)
 	{
-		put_pixel_frame(game->frame, rc->ray, i, 0x420536);
+		put_pixel_frame(game->frame, rc->ray, i,
+			convert_color(game->cub3d->floor_rgb[0], game->cub3d->floor_rgb[1],
+				game->cub3d->floor_rgb[2]));
 		i++;
 	}
 }
