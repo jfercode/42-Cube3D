@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 18:57:15 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:14:21 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void	start_game(t_game *game)
 {
 	raycast(game);
 	mlx_hook(game->window, ClientMessage, LeaveWindowMask, close_game, game);
-	mlx_key_hook(game->window, key_input, game);
+	mlx_hook(game->window, 2, 1L << 0, key_input, game);
 	mlx_loop(game->mlx);
 }

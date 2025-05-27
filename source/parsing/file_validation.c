@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:13:36 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/26 16:26:47 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:20:12 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static int	ft_parse_identifier(char *line, int i, t_cub3d *cub3d)
 		return (ft_validate_color_line(line, i + 1, 'C', cub3d));
 	else if (ft_strncmp("F", &line[i], 1) == 0)
 		return (ft_validate_color_line(line, i + 1, 'F', cub3d));
-	return (FAIL);
+	else if (ft_strncmp("0", &line[i], 1) == 0)
+		return (ft_printf(STDERR_FILENO,
+			"Error:\nMap limit incorrect\n"), FAIL);
+	return (SUCCESS);
 }
 
 static int	ft_check_for_variables(t_cub3d *cub3d)
