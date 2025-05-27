@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   key_mapping.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:06:08 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 19:16:33 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:45:27 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	movement(t_game *game, double x, double y)
+static void	movement(t_game *game, double x, double y)
 {
 	int		next_tile;
 	int		next_x;
@@ -32,32 +32,51 @@ void	movement(t_game *game, double x, double y)
 		{
 			game->player->pos_x = new_x;
 			game->player->pos_y = new_y;
-			raycast(game);
 		}
 	}
+}
+
+static void	rotate(t_game *game, double angle)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = game->player->dir_x;
+	old_plane_x = game->player->plane_x;
+	game->player->dir_x = game->player->dir_x * cos(angle) - game->player->dir_y
+		* sin(angle);
+	game->player->dir_y = game->player->dir_y = old_dir_x * sin(angle)
+		+ game->player->dir_y * cos(angle);
+	game->player->plane_x = game->player->plane_x * cos(angle)
+		- game->player->plane_y * sin(angle);
+	game->player->plane_y = old_plane_x * sin(angle) + game->player->plane_y
+		* cos(angle);
+	game->player->dir = atan2(game->player->dir_y, game->player->dir_x);
 }
 
 int	key_input(int keycode, t_game *game)
 {
 	if (keycode == K_ESC)
 		close_game(game);
-	else if (keycode == K_W)
-		movement(game, 0, TILE_SIZE);
-	else if (keycode == K_A)
-		movement(game, TILE_SIZE, 0);
-	else if (keycode == K_S)
-		movement(game, 0, -TILE_SIZE);
-	else if (keycode == K_D)
-		movement(game, -TILE_SIZE, 0);
-	else if (keycode == K_AR_L)
+	else
 	{
-		game->player->dir = game->player->dir + (-TILE_SIZE / 2);
+		if (keycode == K_W)
+			movement(game, game->player->dir_x * SPEED, game->player->dir_y
+				* SPEED);
+		else if (keycode == K_D)
+			movement(game, -game->player->dir_y * SPEED, game->player->dir_x
+				* SPEED);
+		else if (keycode == K_S)
+			movement(game, -game->player->dir_x * SPEED, -game->player->dir_y
+				* SPEED);
+		else if (keycode == K_A)
+			movement(game, game->player->dir_y * SPEED, -game->player->dir_x
+				* SPEED);
+		else if (keycode == K_AR_L)
+			rotate(game, -ROT_SPEED);
+		else if (keycode == K_AR_R)
+			rotate(game, ROT_SPEED);
 		raycast(game);
-	}
-	else if (keycode == K_AR_R)
-	{
-		game->player->dir = game->player->dir + (TILE_SIZE / 2);
-		raycast(game);	
 	}
 	return (0);
 }

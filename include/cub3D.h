@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 19:08:42 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:34:47 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@
 # define FOV (M_PI / 3)
 # define NUM_RAYS WIN_WIDTH
 # define MAX_DEPTH 1000.0
+
+# define SPEED 5
+# define ROT_SPEED 0.2
 
 typedef struct s_player
 {
