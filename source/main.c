@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/27 18:14:21 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/28 18:13:54 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ static int	ft_init_cub3d(t_cub3d **cub3d)
 	return (EXIT_SUCCESS);
 }
 
+static int	game_loop(t_game *game)
+{
+	update_player(game);
+	raycast(game);
+	return (SUCCESS);
+}
+
+void	start_game(t_game *game)
+{
+	raycast(game);
+	printf(GREEN"Initial pos: %f / %f\n"RST, game->player->pos_x ,game->player->pos_y);
+	mlx_hook(game->window, ClientMessage, LeaveWindowMask, close_game, game);
+	mlx_hook(game->window, 2, 1L << 0, key_press, game);
+	mlx_hook(game->window, 3, 1L << 1, key_release, game);
+	mlx_loop_hook(game->mlx, game_loop, game);
+	mlx_loop(game->mlx);
+}
+
 int	main(int ac, char **av)
 {
 	t_cub3d	*basic_str;
@@ -57,12 +75,4 @@ int	main(int ac, char **av)
 	start_game(game);
 	ft_free_cub3d(basic_str);
 	return (EXIT_SUCCESS);
-}
-
-void	start_game(t_game *game)
-{
-	raycast(game);
-	mlx_hook(game->window, ClientMessage, LeaveWindowMask, close_game, game);
-	mlx_hook(game->window, 2, 1L << 0, key_input, game);
-	mlx_loop(game->mlx);
 }

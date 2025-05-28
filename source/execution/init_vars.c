@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:22:16 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/27 16:44:59 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/28 18:16:17 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	init_player_dir(t_game *game, char dir)
 	}
 	else if (dir == 'W')
 	{
-		game->player->dir_x = -1.0;
+		game->player->dir_x = 1.0;
 		game->player->dir_y = 0.0;
 		game->player->plane_x = 0.0;
 		game->player->plane_y = -0.66;
@@ -50,12 +50,17 @@ static void	init_player_dir(t_game *game, char dir)
 
 static void	init_player(t_game *game)
 {
+	t_keys	*keys;
 	game->player = ft_calloc(sizeof(t_player), 1);
 	if (!game->player)
 		ft_error("Calloc in init_player");
-	game->player->pos_x = (game->cub3d->player_x + 0.5) * TILE_SIZE;
-	game->player->pos_y = (game->cub3d->player_y + 0.5) * TILE_SIZE;
+	game->player->pos_x = (game->cub3d->player_x) * (TILE_SIZE + (TILE_SIZE/ 2));
+	game->player->pos_y = (game->cub3d->player_y) * (TILE_SIZE + (TILE_SIZE/ 2));
 	init_player_dir(game, game->cub3d->player_dir);
+	keys = ft_calloc(sizeof(t_keys), 1);
+	if (!keys)
+		ft_error("Calloc in init_player");
+	game->player->keys = keys;
 }
 
 // static void init_player(t_game *game)

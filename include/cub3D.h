@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/27 16:34:47 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/28 17:36:05 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,18 @@
 # define NUM_RAYS WIN_WIDTH
 # define MAX_DEPTH 1000.0
 
-# define SPEED 5
-# define ROT_SPEED 0.2
+# define SPEED 1
+# define ROT_SPEED 0.01
+
+typedef struct s_keys 
+{
+	int w;
+	int s;
+	int a;
+	int d;
+	int left;
+	int right;
+}	t_keys;
 
 typedef struct s_player
 {
@@ -58,6 +68,9 @@ typedef struct s_player
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+	double		wall_x;
+	double		wall_y;
+	t_keys		*keys;
 }				t_player;
 
 typedef struct s_tile
@@ -164,6 +177,10 @@ void			init_game(t_game *game, t_cub3d *cub3d);
 void			start_game(t_game *game);
 int				close_game(t_game *game);
 
+void		    update_player(t_game *game);
+void			rotate(t_game *game, double angle);
+void			movement(t_game *game, double x, double y);
+
 void			assign_images(t_game *game);
 
 int				raycast(t_game *game);
@@ -174,7 +191,6 @@ t_tile			*get_texture(t_game *game, int side, double ray_angle);
 void			draw(int wall_top, int wall_bottom, t_ray_cast *rc,
 					t_game *game);
 
-int				key_input(int keycode, t_game *game);
 int				loop_hook(t_game *game);
 int				key_release(int keycode, t_game *game);
 int				key_press(int keycode, t_game *game);

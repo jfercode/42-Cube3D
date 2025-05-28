@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:41:39 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/26 16:36:44 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:34:42 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_free_cub3d(t_cub3d *cub3d)
 		return ;
 	ft_free_wall_textures(cub3d->wall_textures);
 	ft_free_matrix(cub3d->map);
+	/*TODO free all structs*/
 	free(cub3d);
 	cub3d = NULL;
 }
