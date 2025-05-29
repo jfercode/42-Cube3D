@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_closed_validation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 18:16:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/27 18:13:36 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/29 09:51:25 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ static int	ft_flood_fill(char **map, int x, int y)
 	if (map[y][x] == '1' || map[y][x] == 'X')
 		return (1);
 	map[y][x] = 'X';
-	return (ft_flood_fill(map, x + 1, y) &&
-	ft_flood_fill(map, x - 1, y) &&
-	ft_flood_fill(map, x, y + 1) &&
-	ft_flood_fill(map, x, y - 1));
+	return (ft_flood_fill(map, x + 1, y) && ft_flood_fill(map, x - 1, y)
+		&& ft_flood_fill(map, x, y + 1) && ft_flood_fill(map, x, y - 1));
 }
 
 int	ft_check_map_closed(t_cub3d *cub3d)
@@ -76,6 +74,5 @@ int	ft_check_map_closed(t_cub3d *cub3d)
 	if (i)
 		return (SUCCESS);
 	else
-		return (ft_printf(STDERR_FILENO,
-			"Error:\nMap is not closed\n"), FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMap is not closed\n"), FAIL);
 }

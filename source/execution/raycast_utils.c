@@ -6,13 +6,13 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:45:53 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 19:11:29 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:05:11 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static void get_dist_and_step(t_ray_cast *rc, t_game *game)
+static void	get_dist_and_step(t_ray_cast *rc, t_game *game)
 {
 	if (rc->dir_x < 0)
 	{
@@ -76,11 +76,11 @@ void	calculate_distance(t_ray_cast *rc, t_game *game)
 	get_dist_and_step(rc, game);
 	get_side(rc, game);
 	if (rc->side == 0)
-		rc->distance = ((rc->map_x * TILE_SIZE - game->player->pos_x) + (1 - rc->step_x) * TILE_SIZE / 2)\
-			/ rc->dir_x;
+		rc->distance = ((rc->map_x * TILE_SIZE - game->player->pos_x)
+				+ (1 - rc->step_x) * TILE_SIZE / 2) / rc->dir_x;
 	else
-		rc->distance = ((rc->map_y * TILE_SIZE - game->player->pos_y) + (1 - rc->step_y) * TILE_SIZE / 2)\
-			/ rc->dir_y;
+		rc->distance = ((rc->map_y * TILE_SIZE - game->player->pos_y)
+				+ (1 - rc->step_y) * TILE_SIZE / 2) / rc->dir_y;
 	rc->ray_x = game->player->pos_x + rc->dir_x * rc->distance;
 	rc->ray_y = game->player->pos_y + rc->dir_y * rc->distance;
 }

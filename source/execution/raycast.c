@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 11:06:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/27 16:46:35 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:00:58 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	raycast(t_game *game)
 	if (!rc)
 		ft_error("Calloc on ray_cast");
 	rc->ray = 0;
-	rc->angle_step = FOV / NUM_RAYS;
-	rc->ray_angle = game->player->dir - (FOV / 2);
+	rc->angle_step = (M_PI / 3) / NUM_RAYS;
+	rc->ray_angle = game->player->dir - ((M_PI / 3) / 2);
 	while (rc->ray < NUM_RAYS)
 	{
 		rc->hit = 0;

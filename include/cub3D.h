@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/28 17:36:05 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:01:20 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,47 +42,47 @@
 # define WIN_HEIGHT 540
 # define WIN_WIDTH 720
 # define TILE_SIZE 64
-# define FOV (M_PI / 3)
 # define NUM_RAYS WIN_WIDTH
 # define MAX_DEPTH 1000.0
+# define OFFSET 8.0
 
 # define SPEED 1
 # define ROT_SPEED 0.01
 
-typedef struct s_keys 
+typedef struct s_keys
 {
-	int w;
-	int s;
-	int a;
-	int d;
-	int left;
-	int right;
-}	t_keys;
+	int				w;
+	int				s;
+	int				a;
+	int				d;
+	int				left;
+	int				right;
+}					t_keys;
 
 typedef struct s_player
 {
-	double		dir;
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	double		wall_x;
-	double		wall_y;
-	t_keys		*keys;
-}				t_player;
+	double			dir;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	double			wall_x;
+	double			wall_y;
+	t_keys			*keys;
+}					t_player;
 
 typedef struct s_tile
 {
-	int			x;
-	int			y;
-	char		*img;
-	char		*addr;
-	int			bits;
-	int			size_line;
-	int			endian;
-}				t_tile;
+	int				x;
+	int				y;
+	char			*img;
+	char			*addr;
+	int				bits;
+	int				size_line;
+	int				endian;
+}					t_tile;
 
 typedef struct s_wall_textures
 {
@@ -108,46 +108,46 @@ typedef struct s_cub3d
 
 typedef struct s_game
 {
-	t_cub3d		*cub3d;
-	t_player	*player;
-	t_tile		*north;
-	t_tile		*south;
-	t_tile		*west;
-	t_tile		*east;
-	t_tile		*frame;
-	int			*keys;
-	void		*mlx;
-	void		*window;
-	int			width;
-	int			height;
+	t_cub3d			*cub3d;
+	t_player		*player;
+	t_tile			*north;
+	t_tile			*south;
+	t_tile			*west;
+	t_tile			*east;
+	t_tile			*frame;
+	int				*keys;
+	void			*mlx;
+	void			*window;
+	int				width;
+	int				height;
 
-}				t_game;
+}					t_game;
 
 typedef struct s_ray_cast
 {
-	double		delta_dist_x;
-	double		delta_dist_y;
-	double		distance;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		dir_x;
-	double		dir_y;
-	double		cam_x;
-	int			map_x;
-	int			map_y;
-	int			step_x;
-	int			step_y;
-	double		angle_step;
-	int			x;
-	int			hit;
-	int			side;
-	int			ray;
-	double		ray_x;
-	double		ray_y;
-	double		ray_angle;
-	double		dx;
-	double		dy;
-}				t_ray_cast;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			distance;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			dir_x;
+	double			dir_y;
+	double			cam_x;
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	double			angle_step;
+	int				x;
+	int				hit;
+	int				side;
+	int				ray;
+	double			ray_x;
+	double			ray_y;
+	double			ray_angle;
+	double			dx;
+	double			dy;
+}					t_ray_cast;
 
 /*  PARSING */
 void				ft_print_cub3d(t_cub3d *cub3d);
@@ -173,26 +173,26 @@ void				ft_error_exit(const char *error_msg);
 
 /* EXECUTION */
 
-void			init_game(t_game *game, t_cub3d *cub3d);
-void			start_game(t_game *game);
-int				close_game(t_game *game);
+void				init_game(t_game *game, t_cub3d *cub3d);
+void				start_game(t_game *game);
+int					close_game(t_game *game);
 
-void		    update_player(t_game *game);
-void			rotate(t_game *game, double angle);
-void			movement(t_game *game, double x, double y);
+void				update_player(t_game *game);
+void				rotate(t_game *game, double angle);
+void				movement(t_game *game, double x, double y);
 
-void			assign_images(t_game *game);
+void				assign_images(t_game *game);
 
-int				raycast(t_game *game);
+int					raycast(t_game *game);
 
-void			calculate_distance(t_ray_cast *rc, t_game *game);
-void			put_pixel_frame(t_tile *frame, int x, int y, int color);
-t_tile			*get_texture(t_game *game, int side, double ray_angle);
-void			draw(int wall_top, int wall_bottom, t_ray_cast *rc,
-					t_game *game);
+void				calculate_distance(t_ray_cast *rc, t_game *game);
+void				put_pixel_frame(t_tile *frame, int x, int y, int color);
+t_tile				*get_texture(t_game *game, int side, double ray_angle);
+void				draw(int wall_top, int wall_bottom, t_ray_cast *rc,
+						t_game *game);
 
-int				loop_hook(t_game *game);
-int				key_release(int keycode, t_game *game);
-int				key_press(int keycode, t_game *game);
+int					loop_hook(t_game *game);
+int					key_release(int keycode, t_game *game);
+int					key_press(int keycode, t_game *game);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/28 18:13:54 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/05/29 09:50:18 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static int	game_loop(t_game *game)
 void	start_game(t_game *game)
 {
 	raycast(game);
-	printf(GREEN"Initial pos: %f / %f\n"RST, game->player->pos_x ,game->player->pos_y);
 	mlx_hook(game->window, ClientMessage, LeaveWindowMask, close_game, game);
 	mlx_hook(game->window, 2, 1L << 0, key_press, game);
 	mlx_hook(game->window, 3, 1L << 1, key_release, game);
