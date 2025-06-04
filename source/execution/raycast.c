@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 11:06:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/29 10:00:58 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/04 19:39:18 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ int	raycast(t_game *game)
 		rc->ray_angle += rc->angle_step;
 		rc->ray++;
 	}
+	if (IS_BONUS == 1)
+		draw_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->window, game->frame->img, 0, 0);
 	free(rc);
 	return (0);

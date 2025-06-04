@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/04 18:54:32 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/04 19:39:29 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,5 +203,5 @@ int					key_press(int keycode, t_game *game);
 
 /*	BONUS	*/
 int					mouse_move(int x, int y, t_game *game);
-
+void				draw_minimap(t_game *game);
 #endif
