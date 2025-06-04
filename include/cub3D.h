@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/04 17:00:06 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:54:32 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # include <sys/types.h>
 # include <unistd.h>
 
-#ifndef IS_BONUS
-# define IS_BONUS 0
-#endif
+# ifndef IS_BONUS
+#  define IS_BONUS 0
+# endif
 
 # ifndef TILE_SIZE
 #  define TILE_SIZE 64
@@ -53,7 +53,7 @@
 # define SPEED 1
 # define ROT_SPEED 0.01
 
-#define MOUSE_SENSITIVITY 0.003
+# define MOUSE_SENSITIVITY 0.018
 
 typedef struct s_keys
 {
@@ -202,7 +202,6 @@ int					key_release(int keycode, t_game *game);
 int					key_press(int keycode, t_game *game);
 
 /*	BONUS	*/
-int					mouse_move(int x, int y, void *param);
-
+int					mouse_move(int x, int y, t_game *game);
 
 #endif

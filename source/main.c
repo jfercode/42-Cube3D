@@ -6,12 +6,12 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/04 16:59:51 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:42:35 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-		
+
 static int	ft_init_cub3d(t_cub3d **cub3d)
 {
 	*cub3d = malloc(sizeof(t_cub3d));
@@ -37,6 +37,12 @@ static int	game_loop(t_game *game)
 {
 	update_player(game);
 	raycast(game);
+	if (IS_BONUS == 1)
+	{
+		mlx_mouse_hide(game->mlx, game->window);
+		mlx_mouse_move(game->mlx, game->window, game->width / 2, game->height
+			/ 2);
+	}
 	return (SUCCESS);
 }
 
@@ -46,12 +52,11 @@ void	start_game(t_game *game)
 	mlx_hook(game->window, ClientMessage, LeaveWindowMask, close_game, game);
 	mlx_hook(game->window, 2, 1L << 0, key_press, game);
 	mlx_hook(game->window, 3, 1L << 1, key_release, game);
-	#if IS_BONUS == 1
+	if (IS_BONUS == 1)
 	{
 		mlx_mouse_hide(game->mlx, game->window);
 		mlx_hook(game->window, 6, 1L << 6, mouse_move, game);
 	}
-	#endif
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_loop(game->mlx);
 }
