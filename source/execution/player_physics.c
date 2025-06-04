@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_physics.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:31:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/29 10:08:19 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/02 17:16:17 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	movement(t_game *game, double x, double y)
 	{
 		game->player->pos_y = new_y;
 	}
+	write (1, "In move", 9);
 }
 
 void	rotate(t_game *game, double angle)

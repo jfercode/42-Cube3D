@@ -2,9 +2,12 @@ MAKEFLAGS += --no-print-directory
 
 NAME	=	cub3D
 
+IS_BONUS ?= 0 
+
 CC		=	cc
-C_FLAGS	=	-Wall -Werror -Wextra -g3 -O0
+C_FLAGS	=	-Wall -Werror -Wextra -g3 -O0 -DIS_BONUS=$(IS_BONUS)
 LIBS 	=	-lm -L mlx/ -lXext -lX11
+
 
 SRC_DIR		=	source
 OBJ_DIR		=	build/obj
@@ -57,6 +60,9 @@ $(MLX_LIB):
 		@echo -n "$(GREEN)█"
 		@$(MAKE) -s -C $(MLX_DIR)
 
+bonus:
+	@$(MAKE) re IS_BONUS=1
+
 clean:
 		@rm -rf build
 		@rm -f ./cub3D
@@ -72,4 +78,4 @@ fclean:	clean
 re:		fclean all
 		@echo "$(BLUE)PROJECT REBUILT.$(RESET)"
 
-.PHONY:	all clean fclean re
+.PHONY:	all bonus clean fclean re 

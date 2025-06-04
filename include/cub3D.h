@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/29 10:01:20 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:00:06 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <unistd.h>
+
+#ifndef IS_BONUS
+# define IS_BONUS 0
+#endif
 
 # ifndef TILE_SIZE
 #  define TILE_SIZE 64
@@ -48,6 +52,8 @@
 
 # define SPEED 1
 # define ROT_SPEED 0.01
+
+#define MOUSE_SENSITIVITY 0.003
 
 typedef struct s_keys
 {
@@ -194,5 +200,9 @@ void				draw(int wall_top, int wall_bottom, t_ray_cast *rc,
 int					loop_hook(t_game *game);
 int					key_release(int keycode, t_game *game);
 int					key_press(int keycode, t_game *game);
+
+/*	BONUS	*/
+int					mouse_move(int x, int y, void *param);
+
 
 #endif

@@ -27,46 +27,15 @@ Bonus:
 
 /*********************************************************************/
 
- Faltantes por implementar:
+BONUS PARSEO:
+        ->      Nuevos caracteres (puerta)
 
--    Validación de líneas de color (Floor y Ceiling):
+MINIMAPA
+        ->      So_long en una esquina superior derecha + renderizacion por hook (como el normal)
 
-        ft_validate_color_line está referenciada pero no definida aún.
-
-            Parseo de colores en formato R,G,B
-
-            Verificación de rangos 0–255 por componente
-
-            Guardar en la estructura de cub3d
-
--    Ignorar o manejar líneas vacías correctamente:
-
-        En ft_line_analisis, actualmente no manejas líneas completamente vacías o con solo espacios.
-
-        Deberías retornarlas como válidas sin error.
-
--    Inicio del parseo de mapa (layout de paredes):
-
-        Falta detectar cuándo empieza el mapa (primera línea con 1, 0, N, S, E, W)
-
-        Falta guardar esas líneas en una estructura char **map o similar
-
--    Validaciones del mapa:
-
-        Asegurar que esté rodeado de paredes
-
-        Asegurar solo un punto de inicio (N, S, E, W)
-
-        Validar que solo contiene caracteres válidos (0, 1, , \n, dirección inicial, etc.)
-
--    Control de errores duplicados o faltantes:
-
-        Verifica que cada textura (NO, SO, WE, EA) y color (F, C) se defina solo una vez
-
-        Verifica que no falte ninguna de estas definiciones antes de empezar el mapa
-
--    Liberación de memoria en casos de error:
-
-        Actualmente haces free(line) pero asegúrate de liberar también estructuras internas de cub3d en caso de fallo.
-
--    Al final hacer un checker maestro de que TODO tiene que estar asignado
+-> Bonus
+        -> Mouse
+        -> Collisions ¿?
+        -> Minimap (hook + start)
+        -> Puertas (parseo)
+        -> Animaciones (puerta)

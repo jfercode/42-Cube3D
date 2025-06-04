@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:06:08 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/28 16:45:48 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:00:30 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,28 @@ int	key_release(int keycode, t_game *game)
 	else
 		return (FAIL);
 	return (SUCCESS);
+}
+
+int	mouse_move(int x, int y, void *param)
+{
+	t_game		*game;
+	int			delta_x;
+	double		angle;
+	static int	last_x = -1;
+
+	(void) y;
+	game = (t_game *)param;
+	if (!game || !game->player)
+		return (0);
+	if (last_x == -1)
+	{
+		last_x = 0;
+		return (0);
+	}
+	delta_x = x - last_x;
+	angle = delta_x * MOUSE_SENSITIVITY;
+	if (angle != 0)
+		rotate(game, angle);
+	last_x = x;
+	return (0);
 }
