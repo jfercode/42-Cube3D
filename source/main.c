@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/04 18:42:35 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/06 13:07:06 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	ft_init_cub3d(t_cub3d **cub3d)
 	(*cub3d)->map_started = false;
 	(*cub3d)->floor_assigned = false;
 	(*cub3d)->ceiling_assigned = false;
+	(*cub3d)->door_texture = NULL;
 	(*cub3d)->map = NULL;
 	return (EXIT_SUCCESS);
 }
@@ -83,6 +84,5 @@ int	main(int ac, char **av)
 		return (free(game), 1);
 	init_game(game, basic_str);
 	start_game(game);
-	ft_free_cub3d(basic_str);
 	return (EXIT_SUCCESS);
 }

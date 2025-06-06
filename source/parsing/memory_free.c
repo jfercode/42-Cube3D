@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:41:39 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/29 09:51:56 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/06 13:07:42 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,28 @@ static void	ft_free_wall_textures(t_wall_textures *wall_textures)
 	wall_textures = NULL;
 }
 
+static void	ft_free_player(t_player *player)
+{
+	if (!player)
+		return;
+	if (player->keys)
+		free(player->keys);
+	free(player);
+}
+
 void	ft_free_cub3d(t_cub3d *cub3d)
 {
 	if (!cub3d)
 		return ;
 	ft_free_wall_textures(cub3d->wall_textures);
+	free(cub3d->door_texture);
 	ft_free_matrix(cub3d->map);
 	free(cub3d);
 	cub3d = NULL;
+}
+
+void	ft_free_game(t_game *game)
+{
+	ft_free_cub3d(game->cub3d);
+	ft_free_player(game->player);
 }

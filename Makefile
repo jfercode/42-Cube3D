@@ -19,7 +19,7 @@ MLX_LIB		=	$(MLX_DIR)/libmlx.a
 
 PARSING		=	file_validation texture_validation color_validation \
 				parsing_utils map_storation map_validation map_closed_validation \
-				memory_free
+				memory_free door_validation
 ERROR 		=	error_handling 
 EXECUTION	=	init_vars xpm key_mapping raycast raycast_utils cleaner player_physics minimap
 

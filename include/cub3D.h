@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/04 19:39:29 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/06 12:52:21 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_cub3d
 	bool			floor_assigned;
 	bool			ceiling_assigned;
 	t_wall_textures	*wall_textures;
+	char			*door_texture;
 	char			**map;
 }					t_cub3d;
 
@@ -156,8 +157,9 @@ typedef struct s_ray_cast
 }					t_ray_cast;
 
 /*  PARSING */
-void				ft_print_cub3d(t_cub3d *cub3d);
+void				ft_free_game(t_game *game);
 void				ft_free_cub3d(t_cub3d *cub3d);
+void				ft_print_cub3d(t_cub3d *cub3d);
 
 int					ft_file_validation(char *map_file, t_cub3d *cub3d);
 int					ft_validate_texture_line(char *line, int i, char flag,
@@ -202,6 +204,9 @@ int					key_release(int keycode, t_game *game);
 int					key_press(int keycode, t_game *game);
 
 /*	BONUS	*/
-int					mouse_move(int x, int y, t_game *game);
 void				draw_minimap(t_game *game);
+
+int					mouse_move(int x, int y, t_game *game);
+int					ft_validate_door_line(char *line, int i, t_cub3d *cub3d);
+
 #endif

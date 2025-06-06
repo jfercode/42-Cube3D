@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:56:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/26 16:34:17 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/06 12:58:58 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	ft_print_cub3d(t_cub3d *cub3d)
 	if (cub3d->wall_textures->west)
 		ft_printf(STDOUT_FILENO, GREEN "[West]" RST " %s\n",
 			cub3d->wall_textures->west);
+	if (cub3d->door_texture)
+		ft_printf(STDOUT_FILENO, GREEN "[Door]" RST " %s\n", cub3d->door_texture);
 	if (cub3d->map)
 		ft_print_map(cub3d->map);
 }
