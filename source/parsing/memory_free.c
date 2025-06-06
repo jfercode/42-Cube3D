@@ -6,7 +6,7 @@
 /*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:41:39 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/06 13:07:42 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/06 13:19:01 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	ft_free_cub3d(t_cub3d *cub3d)
 	if (!cub3d)
 		return ;
 	ft_free_wall_textures(cub3d->wall_textures);
-	free(cub3d->door_texture);
+	if (cub3d->door_texture)
+		free(cub3d->door_texture);
 	ft_free_matrix(cub3d->map);
 	free(cub3d);
 	cub3d = NULL;
