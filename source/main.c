@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/09 17:26:18 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:15:14 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_init_cub3d(t_cub3d **cub3d)
 	(*cub3d)->map_started = false;
 	(*cub3d)->floor_assigned = false;
 	(*cub3d)->ceiling_assigned = false;
-	(*cub3d)->door_texture[0] = NULL;
+	(*cub3d)->door_texture = NULL;
 	(*cub3d)->map = NULL;
 	return (EXIT_SUCCESS);
 }
@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 		else
 			return (ft_free_cub3d(basic_str), EXIT_FAILURE);
 	}
-	game = ft_calloc(sizeof(t_game), sizeof(t_game));
+	game = ft_calloc(sizeof(t_game), 1);
 	if (!game)
 		return (free(game), 1);
 	init_game(game, basic_str);

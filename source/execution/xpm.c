@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:54:01 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/09 17:19:06 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:19:57 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,19 @@ void	assign_images(t_game *game)
 			game->cub3d->wall_textures->west, &game->west->x, &game->west->y);
 	game->east->img = mlx_xpm_file_to_image(game->mlx,
 			game->cub3d->wall_textures->east, &game->east->x, &game->east->y);
+	///////
+	game->door[0]->img = mlx_xpm_file_to_image(game->mlx,
+			"textures/puppystein_statue.xpm", &game->door[0]->x,
+			&game->door[0]->y);
+	game->door[1]->img = mlx_xpm_file_to_image(game->mlx,
+			"textures/puppystein_wolfler.xpm", &game->door[1]->x,
+			&game->door[1]->y);
+	game->door[2]->img = mlx_xpm_file_to_image(game->mlx,
+			"textures/puppystein_statue.xpm", &game->door[2]->x,
+			&game->door[2]->y);
+	game->door[3]->img = mlx_xpm_file_to_image(game->mlx,
+			"textures/puppystein_wolfler.xpm", &game->door[3]->x,
+			&game->door[3]->y);
 	xpm_check(game);
 	game->frame->addr = mlx_get_data_addr(game->frame->img, &game->frame->bits,
 			&game->frame->size_line, &game->frame->endian);
@@ -65,13 +78,12 @@ void	assign_images(t_game *game)
 			&game->east->size_line, &game->east->endian);
 	game->west->addr = mlx_get_data_addr(game->west->img, &game->west->bits,
 			&game->west->size_line, &game->west->endian);
+	//////////
 	while (i < 4)
 	{
-		game->door[i]->img = mlx_xpm_file_to_image(game->mlx,
-				game->cub3d->door_texture[i], &game->door[i]->x,
-				&game->door[i]->y);
 		game->door[i]->addr = mlx_get_data_addr(game->door[i]->img,
 				&game->door[i]->bits, &game->door[i]->size_line,
 				&game->door[i]->endian);
+		i++;
 	}
 }

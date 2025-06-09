@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:22:16 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/09 17:23:24 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:15:28 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static void	init_textures(t_game *game)
 		game->door[i] = ft_calloc(sizeof(t_tile), 1);
 		if (!game->door[i])
 			ft_error("Calloc on door");
+		i++;
 	}
 }
 

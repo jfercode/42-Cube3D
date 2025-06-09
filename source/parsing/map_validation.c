@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:51:49 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/06 12:14:45 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:01:37 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	ft_check_valid_map_chars(char **map)
 {
 	int			i;
 	int			j;
-	const char	*valid = "01NSEW ";
+	const char	*valid = "01NSEW D";
 
 	i = 0;
 	while (map[i])

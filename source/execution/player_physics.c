@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:31:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/09 17:24:14 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:40:23 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,14 @@ void	open_door(t_game *game)
 		return ;
 	if (game->cub3d->map[target_y][target_x] == 'D')
 	{
-		while (game->door[i])
+		printf("changing door\n");
+		while (i < 4)
 		{
 			mlx_put_image_to_window(game->mlx, game->window,
-					game->door[i], game->door[i]->x, game->door[i]->y);
+					game->door[i]->img, game->door[i]->x, game->door[i]->y);
+			raycast(game);
 			ft_usleep(500);
+			i++;
 		}
 		game->cub3d->map[target_y][target_x] = '0';
 	}

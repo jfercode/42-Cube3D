@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/09 17:22:41 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:00:59 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ typedef struct s_cub3d
 	bool			floor_assigned;
 	bool			ceiling_assigned;
 	t_wall_textures	*wall_textures;
-	char			*door_texture[4];
+	char			*door_texture;
 	char			**map;
 }					t_cub3d;
 
