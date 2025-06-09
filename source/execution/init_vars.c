@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_vars.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:22:16 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/06 13:01:37 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:23:24 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ static void	init_player(t_game *game)
 
 static void	init_textures(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	game->north = ft_calloc(sizeof(t_tile), 1);
 	if (!game->north)
 		ft_error("Calloc on north");
@@ -85,6 +88,12 @@ static void	init_textures(t_game *game)
 		ft_error("Calloc on frame");
 	game->frame->x = WIN_WIDTH;
 	game->frame->y = WIN_HEIGHT;
+	while (i < 4)
+	{
+		game->door[i] = ft_calloc(sizeof(t_tile), 1);
+		if (!game->door[i])
+			ft_error("Calloc on door");
+	}
 }
 
 void	init_game(t_game *game, t_cub3d *cub3d)

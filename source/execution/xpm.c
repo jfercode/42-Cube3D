@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:54:01 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/26 19:06:36 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:19:06 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ static void	free_imgs(t_game *game)
 	mlx_destroy_image(game->mlx, game->south->img);
 	mlx_destroy_image(game->mlx, game->west->img);
 	mlx_destroy_image(game->mlx, game->east->img);
+	mlx_destroy_image(game->mlx, game->door[0]->img);
+	mlx_destroy_image(game->mlx, game->door[1]->img);
+	mlx_destroy_image(game->mlx, game->door[2]->img);
+	mlx_destroy_image(game->mlx, game->door[3]->img);
 }
 
 static void	xpm_check(t_game *game)
@@ -36,6 +40,9 @@ static void	xpm_check(t_game *game)
 
 void	assign_images(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	game->frame->img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
 	game->north->img = mlx_xpm_file_to_image(game->mlx,
 			game->cub3d->wall_textures->north, &game->north->x,
@@ -58,4 +65,13 @@ void	assign_images(t_game *game)
 			&game->east->size_line, &game->east->endian);
 	game->west->addr = mlx_get_data_addr(game->west->img, &game->west->bits,
 			&game->west->size_line, &game->west->endian);
+	while (i < 4)
+	{
+		game->door[i]->img = mlx_xpm_file_to_image(game->mlx,
+				game->cub3d->door_texture[i], &game->door[i]->x,
+				&game->door[i]->y);
+		game->door[i]->addr = mlx_get_data_addr(game->door[i]->img,
+				&game->door[i]->bits, &game->door[i]->size_line,
+				&game->door[i]->endian);
+	}
 }

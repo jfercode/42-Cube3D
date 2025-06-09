@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_mapping.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:06:08 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/04 18:54:59 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:51:06 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	key_press(int keycode, t_game *game)
 		game->player->keys->left = 1;
 	else if (keycode == K_AR_R)
 		game->player->keys->right = 1;
+	else if (keycode == K_E)
+			open_door(game);
 	else
 		return (FAIL);
 	return (SUCCESS);

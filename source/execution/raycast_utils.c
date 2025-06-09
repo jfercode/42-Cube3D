@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:45:53 by penpalac          #+#    #+#             */
-/*   Updated: 2025/05/29 10:05:11 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:33:46 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ static void	get_side(t_ray_cast *rc, t_game *game)
 		if (rc->map_y < 0 || rc->map_y >= game->height || rc->map_x < 0
 			|| rc->map_x >= game->width)
 			break ;
-		if (game->cub3d->map[rc->map_y][rc->map_x] == '1')
+		if (game->cub3d->map[rc->map_y][rc->map_x] == 'D')
+			rc->hit = 2;
+		else if (game->cub3d->map[rc->map_y][rc->map_x] == '1')
 			rc->hit = 1;
 	}
 }
@@ -85,30 +87,7 @@ void	calculate_distance(t_ray_cast *rc, t_game *game)
 	rc->ray_y = game->player->pos_y + rc->dir_y * rc->distance;
 }
 
-t_tile	*get_texture(t_game *game, int side, double ray_angle)
+int	convert_color(int r, int g, int b)
 {
-	if (side == 1)
-	{
-		if (sin(ray_angle) > 0)
-			return (game->south);
-		else
-			return (game->north);
-	}
-	else
-	{
-		if (cos(ray_angle) > 0)
-			return (game->east);
-		else
-			return (game->west);
-	}
-}
-
-void	put_pixel_frame(t_tile *frame, int x, int y, int color)
-{
-	char	*text;
-
-	if (x < 0 || y < 0 || x >= frame->x || y >= frame->y)
-		return ;
-	text = frame->addr + (y * frame->size_line + x * (frame->bits / 8));
-	*(unsigned int *)text = color;
+	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }

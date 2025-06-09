@@ -6,65 +6,11 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 11:06:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/04 19:39:18 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/09 15:33:55 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-int	convert_color(int r, int g, int b)
-{
-	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
-}
-
-static void	draw_ceiling_and_floor(int wall_top, int wall_bottom,
-		t_ray_cast *rc, t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < wall_top)
-	{
-		put_pixel_frame(game->frame, rc->ray, i,
-			convert_color(game->cub3d->ceiling_rgb[0],
-				game->cub3d->ceiling_rgb[1], game->cub3d->ceiling_rgb[2]));
-		i++;
-	}
-	i = wall_bottom;
-	while (i < WIN_HEIGHT)
-	{
-		put_pixel_frame(game->frame, rc->ray, i,
-			convert_color(game->cub3d->floor_rgb[0], game->cub3d->floor_rgb[1],
-				game->cub3d->floor_rgb[2]));
-		i++;
-	}
-}
-
-void	draw(int wall_top, int wall_bottom, t_ray_cast *rc, t_game *game)
-{
-	t_tile	*texture;
-	int		tex_x;
-	int		tex_y;
-	int		color;
-	int		i;
-
-	texture = get_texture(game, rc->side, rc->ray_angle);
-	if (texture == game->north || texture == game->south)
-		tex_x = (int)(rc->ray_x) % TILE_SIZE;
-	else
-		tex_x = (int)(rc->ray_y) % TILE_SIZE;
-	tex_x = (tex_x * texture->x) / TILE_SIZE;
-	draw_ceiling_and_floor(wall_top, wall_bottom, rc, game);
-	i = wall_top;
-	while (i < wall_bottom)
-	{
-		tex_y = ((i - wall_top) * texture->y) / (wall_bottom - wall_top);
-		color = *(int *)(texture->addr + tex_y * texture->size_line + tex_x
-				* (texture->bits / 8));
-		put_pixel_frame(game->frame, rc->ray, i, color);
-		i++;
-	}
-}
 
 static void	get_wall_height(t_game *game, t_ray_cast *rc, double corrected_dist)
 {

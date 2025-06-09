@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/06 12:52:21 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/09 17:22:41 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 # ifndef IS_BONUS
 #  define IS_BONUS 0
@@ -41,6 +42,7 @@
 # define K_D 100
 # define K_S 115
 # define K_W 119
+# define K_E 101
 # define K_AR_R 65363
 # define K_AR_L 65361
 # define WIN_HEIGHT 540
@@ -109,7 +111,7 @@ typedef struct s_cub3d
 	bool			floor_assigned;
 	bool			ceiling_assigned;
 	t_wall_textures	*wall_textures;
-	char			*door_texture;
+	char			*door_texture[4];
 	char			**map;
 }					t_cub3d;
 
@@ -121,6 +123,7 @@ typedef struct s_game
 	t_tile			*south;
 	t_tile			*west;
 	t_tile			*east;
+	t_tile			*door[4];
 	t_tile			*frame;
 	int				*keys;
 	void			*mlx;
@@ -188,18 +191,17 @@ int					close_game(t_game *game);
 void				update_player(t_game *game);
 void				rotate(t_game *game, double angle);
 void				movement(t_game *game, double x, double y);
+void				open_door(t_game *game);
 
 void				assign_images(t_game *game);
 
 int					raycast(t_game *game);
-
 void				calculate_distance(t_ray_cast *rc, t_game *game);
-void				put_pixel_frame(t_tile *frame, int x, int y, int color);
-t_tile				*get_texture(t_game *game, int side, double ray_angle);
 void				draw(int wall_top, int wall_bottom, t_ray_cast *rc,
 						t_game *game);
+void				put_pixel_frame(t_tile *frame, int x, int y, int color);
+int					convert_color(int r, int g, int b);
 
-int					loop_hook(t_game *game);
 int					key_release(int keycode, t_game *game);
 int					key_press(int keycode, t_game *game);
 
