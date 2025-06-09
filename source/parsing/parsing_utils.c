@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:56:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/06 12:58:58 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:22:05 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ static void	ft_print_map(char **map)
 		ft_printf(STDOUT_FILENO, "%s\n", map[i]);
 		i++;
 	}
+}
+
+static void	ft_print_door(t_cub3d *cub3d)
+{
+	if (cub3d->door_texture[0])
+		ft_printf(STDOUT_FILENO, GREEN "[Door 0]" RST " %s\n",
+			cub3d->door_texture[0]);
+	if (cub3d->door_texture[1])
+		ft_printf(STDOUT_FILENO, GREEN "[Door 1]" RST " %s\n",
+			cub3d->door_texture[1]);
+	if (cub3d->door_texture[2])
+		ft_printf(STDOUT_FILENO, GREEN "[Door 2]" RST " %s\n",
+			cub3d->door_texture[2]);
+	if (cub3d->door_texture[3])
+		ft_printf(STDOUT_FILENO, GREEN "[Door 0]" RST " %s\n",
+			cub3d->door_texture[3]);
 }
 
 void	ft_print_cub3d(t_cub3d *cub3d)
@@ -48,8 +64,8 @@ void	ft_print_cub3d(t_cub3d *cub3d)
 	if (cub3d->wall_textures->west)
 		ft_printf(STDOUT_FILENO, GREEN "[West]" RST " %s\n",
 			cub3d->wall_textures->west);
-	if (cub3d->door_texture)
-		ft_printf(STDOUT_FILENO, GREEN "[Door]" RST " %s\n", cub3d->door_texture);
+	if (IS_BONUS == 1)
+		ft_print_door(cub3d);
 	if (cub3d->map)
 		ft_print_map(cub3d->map);
 }
