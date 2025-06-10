@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:54:01 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/09 18:19:57 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:17:09 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,16 @@ void	assign_images(t_game *game)
 			game->cub3d->wall_textures->east, &game->east->x, &game->east->y);
 	///////
 	game->door[0]->img = mlx_xpm_file_to_image(game->mlx,
-			"textures/puppystein_statue.xpm", &game->door[0]->x,
+			game->cub3d->door_texture[0], &game->door[0]->x,
 			&game->door[0]->y);
 	game->door[1]->img = mlx_xpm_file_to_image(game->mlx,
-			"textures/puppystein_wolfler.xpm", &game->door[1]->x,
+			game->cub3d->door_texture[1], &game->door[1]->x,
 			&game->door[1]->y);
 	game->door[2]->img = mlx_xpm_file_to_image(game->mlx,
-			"textures/puppystein_statue.xpm", &game->door[2]->x,
+			game->cub3d->door_texture[2], &game->door[2]->x,
 			&game->door[2]->y);
 	game->door[3]->img = mlx_xpm_file_to_image(game->mlx,
-			"textures/puppystein_wolfler.xpm", &game->door[3]->x,
+			game->cub3d->door_texture[3], &game->door[3]->x,
 			&game->door[3]->y);
 	xpm_check(game);
 	game->frame->addr = mlx_get_data_addr(game->frame->img, &game->frame->bits,

@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/09 18:00:59 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:25:38 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/stat.h>
+# include <sys/time.h>
 # include <sys/types.h>
 # include <unistd.h>
-# include <sys/time.h>
 
 # ifndef IS_BONUS
 #  define IS_BONUS 0
@@ -111,9 +111,18 @@ typedef struct s_cub3d
 	bool			floor_assigned;
 	bool			ceiling_assigned;
 	t_wall_textures	*wall_textures;
-	char			*door_texture;
+	char			*door_texture[4];
 	char			**map;
 }					t_cub3d;
+
+typedef struct s_door_anim
+{
+	int				animating;
+	int				frame;
+	long long		start_time;
+	int				target_x;
+	int				target_y;
+}					t_door_anim;
 
 typedef struct s_game
 {
@@ -130,6 +139,8 @@ typedef struct s_game
 	void			*window;
 	int				width;
 	int				height;
+	int				flag;
+	t_door_anim		door_anim;
 
 }					t_game;
 
@@ -210,5 +221,6 @@ void				draw_minimap(t_game *game);
 
 int					mouse_move(int x, int y, t_game *game);
 int					ft_validate_door_line(char *line, int i, t_cub3d *cub3d);
+time_t				get_time(void);
 
 #endif

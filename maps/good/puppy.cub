@@ -5,11 +5,14 @@ NO textures/puppystein_north.xpm
 SO textures/puppystein_south.xpm
 WE textures/puppystein_west.xpm
 EA textures/puppystein_east.xpm
-D textures/puppystein_statue.xpm
+D0 textures/P_player.xpm
+D2 textures/C_item.xpm
+D1 textures/E_exit_closed.xpm
+D3 textures/E_exit_open.xpm
 
 1111111111111111111
-1001001001001001001
-1001001000001001001
+100100100D001001001
+100100100D001001001
 100100111D111001001
 1001001000001001001
 100000000N000000001

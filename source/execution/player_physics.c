@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:31:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/09 18:40:23 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:27:38 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,6 @@ time_t	get_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-int	ft_usleep(time_t time)
-{
-	time_t	start;
-
-	start = get_time();
-	while ((get_time() - start) < time)
-		usleep(1000);
-	return (0);
-}
-
 void	open_door(t_game *game)
 {
 	int		target_x;
@@ -118,14 +108,12 @@ void	open_door(t_game *game)
 	if (game->cub3d->map[target_y][target_x] == 'D')
 	{
 		printf("changing door\n");
-		while (i < 4)
-		{
-			mlx_put_image_to_window(game->mlx, game->window,
-					game->door[i]->img, game->door[i]->x, game->door[i]->y);
-			raycast(game);
-			ft_usleep(500);
-			i++;
-		}
-		game->cub3d->map[target_y][target_x] = '0';
+		game->door_anim.animating = 1;
+		game->door_anim.frame = 0;
+		game->door_anim.start_time = get_time();
+		game->door_anim.target_x = target_x;
+		game->door_anim.target_y = target_y;
 	}
+	game->cub3d->map[target_y][target_x] = '0';
+	// game->flag = 0;
 }

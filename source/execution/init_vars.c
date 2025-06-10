@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:22:16 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/09 18:15:28 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:31:42 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,12 @@ void	init_game(t_game *game, t_cub3d *cub3d)
 	game->height = 0;
 	while (cub3d->map[game->height])
 		game->height++;
+
+	game->door_anim.animating = 0;
+	game->door_anim.frame = 0;
+	game->door_anim.start_time = get_time();
+	game->door_anim.target_x = 0;
+	game->door_anim.target_y = 0;
 	init_textures(game);
 	assign_images(game);
 	init_player(game);

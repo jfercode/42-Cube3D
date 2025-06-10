@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:31:52 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/09 18:37:42 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:57:14 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,16 @@ static void	draw_ceiling_and_floor(int wall_top, int wall_bottom,
 static t_tile	*get_texture(t_game *game, int hit, int side, double ray_angle)
 {
 	if (hit == 2)
-		return (game->door[0]);
+	{
+		if (game->flag == 1)
+			return (game->door[1]);
+		else if (game->flag == 2)
+			return (game->door[2]);
+		else if (game->flag == 3)
+			return (game->door[3]);
+		else
+			return (game->door[0]);
+	}
 	else
 	{
 		if (side == 1)
@@ -72,17 +81,17 @@ static int	get_tex_x(t_tile *texture, t_game *game, t_ray_cast *rc)
 {
 	int	tex_x;
 
-	if (texture == game->door[0])
+	if (texture == game->north || texture == game->south)
+		tex_x = (int)(rc->ray_x) % TILE_SIZE;
+	else if (texture == game->east  || texture == game->west)
+		tex_x = (int)(rc->ray_y) % TILE_SIZE;
+	else
 	{
 		if (rc->side == 0)
 			tex_x = (int)(rc->ray_y) % TILE_SIZE;
 		else
 			tex_x = (int)(rc->ray_x) % TILE_SIZE;
 	}
-	else if (texture == game->north || texture == game->south)
-		tex_x = (int)(rc->ray_x) % TILE_SIZE;
-	else
-		tex_x = (int)(rc->ray_y) % TILE_SIZE;
 	tex_x = (tex_x * texture->x) / TILE_SIZE;
 	return (tex_x);
 }
