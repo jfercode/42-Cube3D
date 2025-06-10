@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_validation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:13:36 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/06 12:39:59 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:39:50 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static int	ft_check_for_variables(t_cub3d *cub3d)
 		return (ft_printf(STDERR_FILENO, "Error:\nMissing ceiling color\n"),
 			FAIL);
 	else if (cub3d->floor_assigned == false)
-			return (ft_printf(STDERR_FILENO, "Error:\nMissing floor color\n"),
-				FAIL);
+		return (ft_printf(STDERR_FILENO, "Error:\nMissing floor color\n"),
+			FAIL);
 	return (SUCCESS);
 }
 

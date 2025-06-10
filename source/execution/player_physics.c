@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:31:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/10 17:27:38 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:57:17 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ void	movement(t_game *game, double x, double y)
 				+ OFFSET) / TILE_SIZE)] != 'D'
 		&& game->cub3d->map[(int)(game->player->pos_y / TILE_SIZE)][(int)((new_x
 				- OFFSET) / TILE_SIZE)] != 'D')
-	{
 		game->player->pos_x = new_x;
-	}
 	if (game->cub3d->map[(int)((new_y + OFFSET)
 			/ TILE_SIZE)][(int)(game->player->pos_x / TILE_SIZE)] != '1'
 		&& game->cub3d->map[(int)((new_y - OFFSET)
@@ -38,9 +36,7 @@ void	movement(t_game *game, double x, double y)
 			/ TILE_SIZE)][(int)(game->player->pos_x / TILE_SIZE)] != 'D'
 		&& game->cub3d->map[(int)((new_y - OFFSET)
 			/ TILE_SIZE)][(int)(game->player->pos_x / TILE_SIZE)] != 'D')
-	{
 		game->player->pos_y = new_y;
-	}
 }
 
 void	rotate(t_game *game, double angle)
@@ -107,13 +103,8 @@ void	open_door(t_game *game)
 		return ;
 	if (game->cub3d->map[target_y][target_x] == 'D')
 	{
-		printf("changing door\n");
-		game->door_anim.animating = 1;
-		game->door_anim.frame = 0;
-		game->door_anim.start_time = get_time();
-		game->door_anim.target_x = target_x;
-		game->door_anim.target_y = target_y;
+		game->cub3d->door_anim = 1;
+		game->cub3d->door_x = target_x;
+		game->cub3d->door_y = target_y;
 	}
-	game->cub3d->map[target_y][target_x] = '0';
-	// game->flag = 0;
 }

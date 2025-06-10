@@ -6,21 +6,11 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:31:52 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/10 16:57:14 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:53:34 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-void	put_pixel_frame(t_tile *frame, int x, int y, int color)
-{
-	char	*text;
-
-	if (x < 0 || y < 0 || x >= frame->x || y >= frame->y)
-		return ;
-	text = frame->addr + (y * frame->size_line + x * (frame->bits / 8));
-	*(unsigned int *)text = color;
-}
 
 static void	draw_ceiling_and_floor(int wall_top, int wall_bottom,
 		t_ray_cast *rc, t_game *game)
@@ -49,11 +39,11 @@ static t_tile	*get_texture(t_game *game, int hit, int side, double ray_angle)
 {
 	if (hit == 2)
 	{
-		if (game->flag == 1)
+		if (game->cub3d->door_frame == 1)
 			return (game->door[1]);
-		else if (game->flag == 2)
+		else if (game->cub3d->door_frame == 2)
 			return (game->door[2]);
-		else if (game->flag == 3)
+		else if (game->cub3d->door_frame == 3)
 			return (game->door[3]);
 		else
 			return (game->door[0]);
@@ -83,7 +73,7 @@ static int	get_tex_x(t_tile *texture, t_game *game, t_ray_cast *rc)
 
 	if (texture == game->north || texture == game->south)
 		tex_x = (int)(rc->ray_x) % TILE_SIZE;
-	else if (texture == game->east  || texture == game->west)
+	else if (texture == game->east || texture == game->west)
 		tex_x = (int)(rc->ray_y) % TILE_SIZE;
 	else
 	{

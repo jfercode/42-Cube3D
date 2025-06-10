@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:06:08 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/10 17:27:10 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:34:54 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	key_press(int keycode, t_game *game)
 	else if (keycode == K_AR_R)
 		game->player->keys->right = 1;
 	else if (IS_BONUS && keycode == K_E)
-			open_door(game);
+		open_door(game);
 	else
 		return (FAIL);
 	return (SUCCESS);

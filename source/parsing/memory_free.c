@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:41:39 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/10 16:06:24 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:40:45 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	ft_free_wall_textures(t_wall_textures *wall_textures)
 static void	ft_free_player(t_player *player)
 {
 	if (!player)
-		return;
+		return ;
 	if (player->keys)
 		free(player->keys);
 	free(player);

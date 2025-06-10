@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/10 17:30:09 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 19:00:18 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,43 +31,38 @@ static int	ft_init_cub3d(t_cub3d **cub3d)
 	(*cub3d)->ceiling_assigned = false;
 	(*cub3d)->door_texture[0] = NULL;
 	(*cub3d)->map = NULL;
+	(*cub3d)->door_anim = 0;
+	(*cub3d)->door_frame = 0;
 	return (EXIT_SUCCESS);
 }
 
-int	update_loop(t_game *game)
+static int	update_loop(t_game *game)
 {
-	long long	current_time;
+	static int	cont = 0;
 
-	if (game->door_anim.animating)
+	if (game->cub3d->door_anim == 1)
 	{
-		printf("IF\n");
-		current_time = get_time();
-		// Change frame every 1000ms (1 second)
-		if (current_time - game->door_anim.start_time >= 1000)
+		if (game->cub3d->door_frame < 4)
 		{
-			printf("IF2\n");
-			game->door_anim.frame++;
-			game->door_anim.start_time = current_time;
-			if (game->door_anim.frame >= 4)
+			if (cont >= 30)
 			{
-				printf("animation complete?\n");
-				// Animation complete
-				game->door_anim.animating = 0;
-				game->cub3d->map[game->door_anim.target_y][game->door_anim.target_x] = '0';
-				game->flag = 0;
+				game->cub3d->door_frame++;
+				cont = 0;
 			}
-			else
-			{
-				game->flag = game->door_anim.frame; // Update texture
-			}
+			cont++;
+			printf("cont : %d\n", cont);
 		}
 	}
-	printf("raycast time\n");
-	raycast(game);
-	mlx_put_image_to_window(game->mlx, game->window, game->frame, 0, 0);
-		// Assuming game->image is your rendered image
-	return (0);
+	if (game->cub3d->door_frame == 4)
+	{
+		game->cub3d->door_anim = 0;
+		game->cub3d->door_frame = 0;
+		cont = 0;
+		game->cub3d->map[game->cub3d->door_y][game->cub3d->door_x] = '0';
+	}
+	return (1);
 }
+
 static int	game_loop(t_game *game)
 {
 	update_player(game);
@@ -77,10 +72,10 @@ static int	game_loop(t_game *game)
 		mlx_mouse_hide(game->mlx, game->window);
 		mlx_mouse_move(game->mlx, game->window, game->width / 2, game->height
 			/ 2);
+		update_loop(game);
 	}
 	return (SUCCESS);
 }
-
 void	start_game(t_game *game)
 {
 	raycast(game);
@@ -91,7 +86,6 @@ void	start_game(t_game *game)
 	{
 		mlx_mouse_hide(game->mlx, game->window);
 		mlx_hook(game->window, 6, 1L << 6, mouse_move, game);
-		mlx_hook(game->window, 2, 1L << 0, update_loop, game);
 	}
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_loop(game->mlx);

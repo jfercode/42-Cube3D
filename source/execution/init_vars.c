@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:22:16 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/10 17:31:42 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:58:09 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ static void	init_textures(t_game *game)
 	game->frame = ft_calloc(sizeof(t_tile), 1);
 	if (!game->frame)
 		ft_error("Calloc on frame");
-	game->frame->x = WIN_WIDTH;
-	game->frame->y = WIN_HEIGHT;
 	while (i < 4)
 	{
 		game->door[i] = ft_calloc(sizeof(t_tile), 1);
@@ -108,13 +106,9 @@ void	init_game(t_game *game, t_cub3d *cub3d)
 	game->height = 0;
 	while (cub3d->map[game->height])
 		game->height++;
-
-	game->door_anim.animating = 0;
-	game->door_anim.frame = 0;
-	game->door_anim.start_time = get_time();
-	game->door_anim.target_x = 0;
-	game->door_anim.target_y = 0;
 	init_textures(game);
+	game->frame->x = WIN_WIDTH;
+	game->frame->y = WIN_HEIGHT;
 	assign_images(game);
 	init_player(game);
 }

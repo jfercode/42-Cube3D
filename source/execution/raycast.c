@@ -6,11 +6,26 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 11:06:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/10 16:37:36 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:37:56 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+void	put_pixel_frame(t_tile *frame, int x, int y, int color)
+{
+	char	*text;
+
+	if (x < 0 || y < 0 || x >= frame->x || y >= frame->y)
+		return ;
+	text = frame->addr + (y * frame->size_line + x * (frame->bits / 8));
+	*(unsigned int *)text = color;
+}
+
+int	convert_color(int r, int g, int b)
+{
+	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
+}
 
 static void	get_wall_height(t_game *game, t_ray_cast *rc, double corrected_dist)
 {
@@ -52,6 +67,5 @@ int	raycast(t_game *game)
 	if (IS_BONUS == 1)
 		draw_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->window, game->frame->img, 0, 0);
-	free(rc);
-	return (0);
+	return (free(rc), 0);
 }

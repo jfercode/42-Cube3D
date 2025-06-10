@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:45:53 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/09 15:33:46 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:37:46 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,4 @@ void	calculate_distance(t_ray_cast *rc, t_game *game)
 				+ (1 - rc->step_y) * TILE_SIZE / 2) / rc->dir_y;
 	rc->ray_x = game->player->pos_x + rc->dir_x * rc->distance;
 	rc->ray_y = game->player->pos_y + rc->dir_y * rc->distance;
-}
-
-int	convert_color(int r, int g, int b)
-{
-	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }
