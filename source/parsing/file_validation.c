@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_validation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:13:36 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/10 18:39:50 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:28:54 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,13 @@ static int	ft_parse_identifier(char *line, int i, t_cub3d *cub3d)
 	else if (ft_strncmp("F", &line[i], 1) == 0)
 		return (ft_validate_color_line(line, i + 1, 'F', cub3d));
 	else if (ft_strncmp("D", &line[i], 1) == 0)
-		return (ft_validate_door_line(line, i + 1, cub3d));
+	{
+		if (IS_BONUS == 1)
+			return (ft_validate_door_line(line, i + 1, cub3d));
+		else
+			return (ft_printf(STDERR_FILENO,
+					"Error:\nInvalid caracter detected\n"), FAIL);
+	}
 	else if (ft_strncmp("0", &line[i], 1) == 0)
 		return (ft_printf(STDERR_FILENO, "Error:\nMap limit incorrect\n"),
 			FAIL);

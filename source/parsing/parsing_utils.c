@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:56:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/09 18:22:05 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:36:54 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	ft_print_cub3d(t_cub3d *cub3d)
 char	*ft_strip_newline(char *str)
 {
 	int		len;
+	// int		i;
 	char	*cleaned;
 
 	if (!str)
@@ -81,6 +82,9 @@ char	*ft_strip_newline(char *str)
 	len = ft_strlen(str);
 	if (len > 0 && str[len - 1] == '\n')
 		len--;
+	// i = 0;
+	// while (str[i] != ' ')
+	// 	i++;
 	cleaned = ft_substr(str, 0, len);
 	if (!cleaned)
 		return (NULL);

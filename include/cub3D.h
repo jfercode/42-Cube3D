@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/10 18:56:43 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:31:48 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,22 +102,22 @@ typedef struct s_wall_textures
 
 typedef struct s_cub3d
 {
-    int             floor_rgb[3];
-    int             ceiling_rgb[3];
-    char            player_dir;
-    int             player_x;
-    int             player_y;
-    bool            map_started;
-    bool            floor_assigned;
-    bool            ceiling_assigned;
-    t_wall_textures *wall_textures;
-    char            *door_texture[4];
-    int             door_anim;
-    int             door_frame;
+	int				floor_rgb[3];
+	int				ceiling_rgb[3];
+	char			player_dir;
+	int				player_x;
+	int				player_y;
+	bool			map_started;
+	bool			floor_assigned;
+	bool			ceiling_assigned;
+	t_wall_textures	*wall_textures;
+	char			*door_texture[4];
+	int				door_anim;
+	int				door_frame;
 	int				door_x;
 	int				door_y;
-    char            **map;
-}                   t_cub3d;
+	char			**map;
+}					t_cub3d;
 
 typedef struct s_game
 {

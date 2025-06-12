@@ -35,7 +35,15 @@ MINIMAPA
 
 -> Bonus
         -> Mouse
-        -> Collisions ¿?
+        -> Collisions ¿
         -> Minimap (hook + start)
         -> Puertas (parseo)
         -> Animaciones (puerta)
+
+-> Para hacer 
+                - correccion validacion de texturas
+                - revisar norminette -> funciones de mas de 25 lineas y alguna que otra de mas
+                de 4 argumentos.
+                - revisar memoria (al menos la entrada al juego y salida sin ejecucion limpia).
+                - ajustar tiempos animacion de la  .
+                - ¿Limitacion del mapa?
