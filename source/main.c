@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/12 16:35:41 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:43:28 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 
 static int	ft_init_cub3d(t_cub3d **cub3d)
 {
+	int	i;
+
 	*cub3d = malloc(sizeof(t_cub3d));
 	if (!*cub3d)
 		return (ft_printf(STDERR_FILENO, "Error:\n failed malloc\n"),
 			EXIT_FAILURE);
-	(*cub3d)->wall_textures = malloc(sizeof(t_wall_textures));
+	(*cub3d)->wall_textures = ft_calloc(sizeof(t_wall_textures), 1);
 	if (!(*cub3d)->wall_textures)
 		return (ft_printf(STDERR_FILENO, "Error:\n failed malloc\n"),
 			EXIT_FAILURE);
-	(*cub3d)->wall_textures->north = NULL;
-	(*cub3d)->wall_textures->south = NULL;
-	(*cub3d)->wall_textures->east = NULL;
-	(*cub3d)->wall_textures->west = NULL;
 	(*cub3d)->map_started = false;
 	(*cub3d)->floor_assigned = false;
 	(*cub3d)->ceiling_assigned = false;
-	(*cub3d)->door_texture[0] = NULL;
-	(*cub3d)->door_texture[1] = NULL;
-	(*cub3d)->door_texture[2] = NULL;
-	(*cub3d)->door_texture[3] = NULL;
-	(*cub3d)->map = NULL;
-	(*cub3d)->door_anim = 0;
+	i = 0;
+	while (i < 4)
+	{
+		(*cub3d)->door_texture[i] = NULL;
+		i++;
+	}
 	(*cub3d)->door_frame = 0;
+	(*cub3d)->door_anim = 0;
 	return (EXIT_SUCCESS);
 }
 

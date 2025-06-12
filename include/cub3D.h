@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/12 15:31:48 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:58:00 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/stat.h>
-# include <sys/time.h>
 # include <sys/types.h>
 # include <unistd.h>
 
@@ -134,6 +133,8 @@ typedef struct s_game
 	void			*window;
 	int				width;
 	int				height;
+	int				minimap_x;
+	int				minimap_y;
 }					t_game;
 
 typedef struct s_ray_cast
@@ -213,6 +214,5 @@ void				draw_minimap(t_game *game);
 
 int					mouse_move(int x, int y, t_game *game);
 int					ft_validate_door_line(char *line, int i, t_cub3d *cub3d);
-time_t				get_time(void);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:31:52 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/12 15:28:02 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:49:17 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,22 @@ static void	draw_ceiling_and_floor(int wall_top, int wall_bottom,
 	}
 }
 
+static t_tile	*get_door_texture(t_game *game)
+{
+	if (game->cub3d->door_frame == 1)
+		return (game->door[1]);
+	else if (game->cub3d->door_frame == 2)
+		return (game->door[2]);
+	else if (game->cub3d->door_frame == 3)
+		return (game->door[3]);
+	else
+		return (game->door[0]);
+}
+
 static t_tile	*get_texture(t_game *game, int hit, int side, double ray_angle)
 {
 	if (hit == 2)
-	{
-		if (game->cub3d->door_frame == 1)
-			return (game->door[1]);
-		else if (game->cub3d->door_frame == 2)
-			return (game->door[2]);
-		else if (game->cub3d->door_frame == 3)
-			return (game->door[3]);
-		else
-			return (game->door[0]);
-	}
+		return (get_door_texture(game));
 	else
 	{
 		if (side == 1)

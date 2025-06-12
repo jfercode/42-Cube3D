@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:31:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/10 18:57:17 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:57:41 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,6 @@ void	update_player(t_game *game)
 		rotate(game, -ROT_SPEED);
 	else if (game->player->keys->right)
 		rotate(game, ROT_SPEED);
-}
-
-time_t	get_time(void)
-{
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
 void	open_door(t_game *game)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 17:15:45 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/12 15:12:44 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:58:24 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,17 @@ static void	put_minimap_onscreen(t_game *game, int x, int y, int color)
 	}
 }
 
-static void	draw_square(t_game *game, int start_x, int start_y, int end_x,
-		int end_y)
+static void	draw_square(t_game *game, int start_x, int start_y)
 {
 	int	i;
 	int	j;
 	int	color;
 
 	i = start_y;
-	while (i <= end_y)
+	while (i <= game->minimap_y)
 	{
 		j = start_x;
-		while (j <= end_x)
+		while (j <= game->minimap_x)
 		{
 			if (j >= 0 && j <= game->width && i >= 0 && i <= game->height)
 			{
@@ -86,8 +85,6 @@ void	draw_minimap(t_game *game)
 {
 	int	start_x;
 	int	start_y;
-	int	end_x;
-	int	end_y;
 
 	draw_base(game);
 	start_x = (int)(game->player->pos_x / TILE_SIZE) - 5;
@@ -96,11 +93,11 @@ void	draw_minimap(t_game *game)
 	start_y = (int)(game->player->pos_y / TILE_SIZE) - 5;
 	if (start_y < 0)
 		start_y = 0;
-	end_x = (int)(game->player->pos_x / TILE_SIZE) + 5;
-	if (end_x >= game->width)
-		end_x = game->width - 1;
-	end_y = (int)(game->player->pos_y / TILE_SIZE) + 5;
-	if (end_y >= game->height)
-		end_y = game->height - 1;
-	draw_square(game, start_x, start_y, end_x, end_y);
+	game->minimap_x = (int)(game->player->pos_x / TILE_SIZE) + 5;
+	if (game->minimap_x >= game->width)
+		game->minimap_x = game->width - 1;
+	game->minimap_y = (int)(game->player->pos_y / TILE_SIZE) + 5;
+	if (game->minimap_y >= game->height)
+		game->minimap_y = game->height - 1;
+	draw_square(game, start_x, start_y);
 }
