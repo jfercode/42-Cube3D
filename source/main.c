@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/12 15:12:20 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/12 16:35:41 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ static int	ft_init_cub3d(t_cub3d **cub3d)
 	(*cub3d)->floor_assigned = false;
 	(*cub3d)->ceiling_assigned = false;
 	(*cub3d)->door_texture[0] = NULL;
+	(*cub3d)->door_texture[1] = NULL;
+	(*cub3d)->door_texture[2] = NULL;
+	(*cub3d)->door_texture[3] = NULL;
 	(*cub3d)->map = NULL;
 	(*cub3d)->door_anim = 0;
 	(*cub3d)->door_frame = 0;
@@ -50,7 +53,6 @@ static int	update_loop(t_game *game)
 				cont = 0;
 			}
 			cont++;
-			printf("cont : %d\n", cont);
 		}
 	}
 	if (game->cub3d->door_frame == 4)
