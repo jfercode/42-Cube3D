@@ -6,7 +6,7 @@
 /*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:57:49 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/09 18:24:45 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:03:39 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ int	ft_validate_door_line(char *line, int i, t_cub3d *cub3d)
 		close(fd);
 		if (ft_validate_door_text(cleaned, flag, cub3d))
 			return (SUCCESS);
-		else
-			return (free(cleaned), FAIL);
+		return (free(cleaned), FAIL);
 	}
 	return (free(cleaned), FAIL);
 }

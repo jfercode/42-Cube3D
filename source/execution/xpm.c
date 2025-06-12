@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xpm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 16:54:01 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/10 18:34:23 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:02:39 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ static void	assign_images_bonus(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 4 && game->cub3d->door_texture[i])
 	{
 		game->door[i]->img = mlx_xpm_file_to_image(game->mlx,
 				game->cub3d->door_texture[i], &game->door[i]->x,
 				&game->door[i]->y);
 		if (!game->door[i]->img)
 		{
-			ft_error("Couldn't load xpm files");
+			ft_error("Couldn't load xpm files bonus");
 			close_game(game);
 		}
 		i++;
 	}
 	i = 0;
-	while (i < 4)
+	while (i < 4 && game->cub3d->door_texture[i])
 	{
 		game->door[i]->addr = mlx_get_data_addr(game->door[i]->img,
 				&game->door[i]->bits, &game->door[i]->size_line,
@@ -73,6 +73,6 @@ void	assign_images(t_game *game)
 			&game->east->size_line, &game->east->endian);
 	game->west->addr = mlx_get_data_addr(game->west->img, &game->west->bits,
 			&game->west->size_line, &game->west->endian);
-	if (IS_BONUS)
+	if (IS_BONUS == 1)
 		assign_images_bonus(game);
 }
