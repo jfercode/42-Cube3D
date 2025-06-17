@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:11:49 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/12 17:57:39 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:16:19 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,25 @@
 
 void	free_images(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	mlx_destroy_image(game->mlx, game->frame->img);
 	mlx_destroy_image(game->mlx, game->north->img);
 	mlx_destroy_image(game->mlx, game->south->img);
 	mlx_destroy_image(game->mlx, game->west->img);
 	mlx_destroy_image(game->mlx, game->east->img);
-	if (IS_BONUS == 1)
-	{
-		if (game->door[0]->img)
-			mlx_destroy_image(game->mlx, game->door[0]->img);
-		if (game->door[1]->img)
-			mlx_destroy_image(game->mlx, game->door[1]->img);
-		if (game->door[2]->img)
-			mlx_destroy_image(game->mlx, game->door[2]->img);
-		if (game->door[3]->img)
-			mlx_destroy_image(game->mlx, game->door[3]->img);
-	}
 	free(game->frame);
 	free(game->north);
 	free(game->south);
 	free(game->east);
 	free(game->west);
+	while (i < 4 && game->cub3d->door_texture[i])
+	{
+		mlx_destroy_image(game->mlx, game->door[i]->img);
+		free(game->door[i]);
+		i++;
+	}
 }
 
 int	close_game(t_game *game)

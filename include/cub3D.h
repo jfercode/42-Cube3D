@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/12 15:58:00 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:31:50 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ void				ft_free_game(t_game *game);
 void				ft_free_cub3d(t_cub3d *cub3d);
 void				ft_print_cub3d(t_cub3d *cub3d);
 
+int					ft_map_is_finished(int fd);
 int					ft_file_validation(char *map_file, t_cub3d *cub3d);
 int					ft_validate_texture_line(char *line, int i, char flag,
 						t_cub3d *cub3d);

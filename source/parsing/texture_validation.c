@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_validation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:14:09 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/06 12:02:21 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:09:46 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_validate_texture_line(char *line, int i, char flag,
 	fd = open(cleaned, O_RDONLY);
 	if (fd < 0)
 		return (ft_printf(STDERR_FILENO, "Error:\nDoesn't exist file: %s\n",
-				cleaned), FAIL);
+				cleaned), free(cleaned), FAIL);
 	if (ft_check_file_extensions(cleaned, ".xpm"))
 	{
 		close(fd);

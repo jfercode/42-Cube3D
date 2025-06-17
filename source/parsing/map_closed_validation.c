@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 18:16:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/29 09:51:25 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:27:18 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,18 @@ static int	ft_flood_fill(char **map, int x, int y)
 	map[y][x] = 'X';
 	return (ft_flood_fill(map, x + 1, y) && ft_flood_fill(map, x - 1, y)
 		&& ft_flood_fill(map, x, y + 1) && ft_flood_fill(map, x, y - 1));
+}
+
+int	ft_map_is_finished(int fd)
+{
+	char	*line;
+
+	line = ft_get_next_line(fd);
+	if (line != NULL)
+		return (ft_get_next_line(-4242), free(line), ft_printf(STDERR_FILENO,
+				"Error:\nMap is not finished\n"), FAIL);
+	else
+		return (free(line), SUCCESS);
 }
 
 int	ft_check_map_closed(t_cub3d *cub3d)

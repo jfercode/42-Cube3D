@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:06:13 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/05/26 16:23:20 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:31:42 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,18 @@ char	*ft_get_next_line(int fd)
 {
 	char		*line_readed;
 	static char	*rest[1024];
+	int			i;
 
+	if (fd == -4242)
+	{
+		i = 0;
+		while (i <= 1024)
+		{
+			if (rest[i] != NULL)
+				return (free(rest[i]), NULL);
+			i++;
+		}
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	rest[fd] = obtain_rest_with_nl(fd, rest[fd]);

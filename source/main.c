@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/12 17:43:28 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:21:28 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	ft_init_cub3d(t_cub3d **cub3d)
 		return (ft_printf(STDERR_FILENO, "Error:\n failed malloc\n"),
 			EXIT_FAILURE);
 	(*cub3d)->map_started = false;
+	(*cub3d)->map = NULL;
 	(*cub3d)->floor_assigned = false;
 	(*cub3d)->ceiling_assigned = false;
 	i = 0;

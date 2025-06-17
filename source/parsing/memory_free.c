@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:41:39 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/10 18:40:45 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:18:49 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	ft_free_cub3d(t_cub3d *cub3d)
 			i++;
 		}
 	}
-	ft_free_matrix(cub3d->map);
+	if (cub3d->map != NULL)
+		ft_free_matrix(cub3d->map);
 	free(cub3d);
 	cub3d = NULL;
 }
@@ -63,4 +64,5 @@ void	ft_free_game(t_game *game)
 {
 	ft_free_cub3d(game->cub3d);
 	ft_free_player(game->player);
+	free(game);
 }

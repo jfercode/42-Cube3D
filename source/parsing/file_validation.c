@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_validation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:13:36 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/06/12 15:28:54 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:28:52 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	ft_line_analisis(char *line, t_cub3d *cub3d)
 	return (ft_parse_identifier(line, i, cub3d));
 }
 
-static int	ft_check_all(t_cub3d *cub3d)
+static int	ft_check_all(t_cub3d *cub3d, int fd)
 {
 	if (!cub3d->wall_textures->north)
 		return (ft_printf(STDERR_FILENO, "Error:\nMissing north texture\n"),
@@ -111,7 +111,7 @@ static int	ft_check_all(t_cub3d *cub3d)
 			FAIL);
 	else if (!cub3d->map)
 		return (ft_printf(STDERR_FILENO, "Error:\nMissing map\n"), FAIL);
-	return (SUCCESS);
+	return (ft_map_is_finished(fd));
 }
 
 /*
@@ -133,12 +133,15 @@ int	ft_file_validation(char *map_file, t_cub3d *cub3d)
 	while (line != NULL)
 	{
 		if (ft_line_analisis(line, cub3d) == FAIL)
-			return (free(line), close(fd), FAIL);
+			return (ft_get_next_line(-4242), free(line), close(fd), FAIL);
 		if (cub3d->map_started == true)
-			return (ft_store_map_lines(fd, line, cub3d));
+		{
+			if (ft_store_map_lines(fd, line, cub3d) == FAIL)
+				return (FAIL);
+			break ;
+		}
 		free(line);
 		line = ft_get_next_line(fd);
 	}
-	close(fd);
-	return (ft_check_all(cub3d));
+	return (ft_check_all(cub3d, fd));
 }

@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:22:16 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/10 18:58:09 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:14:19 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	init_textures(t_game *game)
 	game->frame = ft_calloc(sizeof(t_tile), 1);
 	if (!game->frame)
 		ft_error("Calloc on frame");
-	while (i < 4)
+	while (i < 4 && game->cub3d->door_texture[i])
 	{
 		game->door[i] = ft_calloc(sizeof(t_tile), 1);
 		if (!game->door[i])
