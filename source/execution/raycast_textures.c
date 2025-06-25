@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:31:52 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/12 15:49:17 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:58:37 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,16 @@ static t_tile	*get_texture(t_game *game, int hit, int side, double ray_angle)
 		if (side == 1)
 		{
 			if (sin(ray_angle) > 0)
-				return (game->south);
-			else
 				return (game->north);
+			else
+				return (game->south);
 		}
 		else
 		{
 			if (cos(ray_angle) > 0)
-				return (game->east);
-			else
 				return (game->west);
+			else
+				return (game->east);
 		}
 	}
 }
