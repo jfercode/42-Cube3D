@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:22:16 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/17 16:14:19 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/26 12:10:21 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static void	init_player_dir_part_two(t_game *game, char dir)
 	}
 	else if (dir == 'W')
 	{
-		game->player->dir_x = 1.0;
+		game->player->dir_x = -1.0;
 		game->player->dir_y = 0.0;
 		game->player->plane_x = 0.0;
 		game->player->plane_y = -0.66;
-		game->player->dir = 0.0;
+		game->player->dir = M_PI;
 	}
 }
 

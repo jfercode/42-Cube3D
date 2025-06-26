@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 11:06:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/12 15:17:22 by jaferna2         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:05:45 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ static void	get_wall_height(t_game *game, t_ray_cast *rc, double corrected_dist)
 	wall_height = (TILE_SIZE * WIN_HEIGHT) / corrected_dist;
 	if (wall_height > WIN_HEIGHT)
 		wall_height = WIN_HEIGHT;
-	wall_top = (WIN_HEIGHT / 2) - (wall_height / 2);
-	wall_bottom = wall_top + wall_height;
+	wall_bottom = (WIN_HEIGHT - wall_height) / 2;
+	wall_top = (WIN_HEIGHT + wall_height) / 2;
+	if (wall_bottom < 0)
+		wall_bottom = 0;
+	if (wall_top > WIN_HEIGHT)
+		wall_top = WIN_HEIGHT - 1;
 	draw(wall_top, wall_bottom, rc, game);
 }
 

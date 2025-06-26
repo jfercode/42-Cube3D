@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/17 17:31:50 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:06:25 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define TILE_SIZE 64
 # define NUM_RAYS WIN_WIDTH
 # define MAX_DEPTH 1000.0
-# define OFFSET 8.0
+# define OFFSET 12
 
 # define SPEED 1
 # define ROT_SPEED 0.01

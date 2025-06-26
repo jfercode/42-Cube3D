@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 15:31:52 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/25 18:58:37 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:06:35 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,12 @@ static int	get_tex_x(t_tile *texture, t_game *game, t_ray_cast *rc)
 		else
 			tex_x = (int)(rc->ray_x) % TILE_SIZE;
 	}
+	tex_x = (tex_x + TILE_SIZE) % TILE_SIZE;
 	tex_x = (tex_x * texture->x) / TILE_SIZE;
+	if (tex_x < 0)
+		tex_x = 0;
+	else if (tex_x >= texture->x)
+		tex_x = texture->x - 1;
 	return (tex_x);
 }
 
@@ -100,10 +105,14 @@ void	draw(int wall_top, int wall_bottom, t_ray_cast *rc, t_game *game)
 	texture = get_texture(game, rc->hit, rc->side, rc->ray_angle);
 	tex_x = get_tex_x(texture, game, rc);
 	draw_ceiling_and_floor(wall_top, wall_bottom, rc, game);
-	i = wall_top;
-	while (i < wall_bottom)
+	i = wall_bottom;
+	while (i < wall_top)
 	{
-		tex_y = ((i - wall_top) * texture->y) / (wall_bottom - wall_top);
+		tex_y = ((i - wall_bottom) * texture->y) / (wall_top - wall_bottom);
+		if (tex_y < 0)
+			tex_y = 0;
+		else if (tex_y > texture->y)
+			tex_y = texture->y - 1;			
 		color = *(int *)(texture->addr + tex_y * texture->size_line + tex_x
 				* (texture->bits / 8));
 		put_pixel_frame(game->frame, rc->ray, i, color);
