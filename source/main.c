@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/17 16:21:28 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:13:19 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,8 @@ static int	ft_init_cub3d(t_cub3d **cub3d)
 	}
 	(*cub3d)->door_frame = 0;
 	(*cub3d)->door_anim = 0;
+	(*cub3d)->door_timer = 0;
 	return (EXIT_SUCCESS);
-}
-
-static int	update_loop(t_game *game)
-{
-	static int	cont = 0;
-
-	if (game->cub3d->door_anim == 1)
-	{
-		if (game->cub3d->door_frame < 4)
-		{
-			if (cont >= 30)
-			{
-				game->cub3d->door_frame++;
-				cont = 0;
-			}
-			cont++;
-		}
-	}
-	if (game->cub3d->door_frame == 4)
-	{
-		game->cub3d->door_anim = 0;
-		game->cub3d->door_frame = 0;
-		cont = 0;
-		game->cub3d->map[game->cub3d->door_y][game->cub3d->door_x] = '0';
-	}
-	return (1);
 }
 
 static int	game_loop(t_game *game)

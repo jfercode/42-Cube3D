@@ -6,11 +6,25 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 17:15:45 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/12 15:58:24 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:52:57 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+static int	get_color(t_game *game, int color, int i, int j)
+{
+	if (game->cub3d->map[i][j] == '1')
+		color = 0x000000;
+	else if (game->cub3d->map[i][j] == 'D')
+		color = 0x888888;
+	else if (i == (int)(game->player->pos_y / TILE_SIZE)
+		&& j == (int)(game->player->pos_x / TILE_SIZE))
+		color = 0xFF00FF;
+	else
+		color = 0xFFFFFF;
+	return (color);
+}
 
 static void	put_minimap_onscreen(t_game *game, int x, int y, int color)
 {
@@ -46,13 +60,7 @@ static void	draw_square(t_game *game, int start_x, int start_y)
 		{
 			if (j >= 0 && j <= game->width && i >= 0 && i <= game->height)
 			{
-				if (game->cub3d->map[i][j] == '1')
-					color = 0x000000;
-				else if (i == (int)(game->player->pos_y / TILE_SIZE)
-					&& j == (int)(game->player->pos_x / TILE_SIZE))
-					color = 0xFF00FF;
-				else
-					color = 0xFFFFFF;
+				color = get_color(game, color, i, j);
 			}
 			put_minimap_onscreen(game, j - start_x, i - start_y, color);
 			j++;

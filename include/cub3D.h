@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:03 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/26 13:06:25 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:33:52 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/stat.h>
+# include <sys/time.h>
 # include <sys/types.h>
 # include <unistd.h>
 
@@ -113,8 +114,10 @@ typedef struct s_cub3d
 	char			*door_texture[4];
 	int				door_anim;
 	int				door_frame;
+	int				door_timer;
 	int				door_x;
 	int				door_y;
+	int				door_closing;
 	char			**map;
 }					t_cub3d;
 
@@ -215,5 +218,6 @@ void				draw_minimap(t_game *game);
 
 int					mouse_move(int x, int y, t_game *game);
 int					ft_validate_door_line(char *line, int i, t_cub3d *cub3d);
+int					update_loop(t_game *game);
 
 #endif

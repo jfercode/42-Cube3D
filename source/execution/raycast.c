@@ -6,7 +6,7 @@
 /*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 11:06:42 by penpalac          #+#    #+#             */
-/*   Updated: 2025/06/26 13:05:45 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:42:00 by penpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	raycast(t_game *game)
 		rc->distance = 0;
 		calculate_distance(rc, game);
 		corrected_dist = rc->distance * cos(rc->ray_angle - game->player->dir);
-		if (corrected_dist < 0.1)
+		if (corrected_dist <= 0)
 			corrected_dist = 0.1;
 		get_wall_height(game, rc, corrected_dist);
 		rc->ray_angle += rc->angle_step;
