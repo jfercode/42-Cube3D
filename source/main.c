@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 < jaferna2@student.42madrid.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:00:07 by penpalac          #+#    #+#             */
-/*   Updated: 2025/07/01 17:13:19 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/07/07 18:47:20 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,7 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	else
 	{
-		if (ft_file_validation(av[1], basic_str) == SUCCESS)
-			ft_print_cub3d(basic_str);
-		else
+		if (ft_file_validation(av[1], basic_str) != SUCCESS)
 			return (ft_free_cub3d(basic_str), EXIT_FAILURE);
 	}
 	game = ft_calloc(sizeof(t_game), 1);
