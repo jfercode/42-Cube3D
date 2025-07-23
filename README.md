@@ -3,7 +3,7 @@
 Cube3D es un proyecto de la escuela 42 que explora los fundamentos de la **programación gráfica en C** y el desarrollo de un motor de renderizado en 3D sencillo, inspirado en los clásicos juegos de tipo **Wolfenstein 3D**. El objetivo es crear una simulación de entorno 3D usando técnicas de **raycasting**, gestionando eventos de usuario y renderizando un mapa en perspectiva.
 
 <div align="center">
-  <img src="https://github.com/jfercode/42-Cube3D/assets/cube3d-demo.gif" alt="Cube3D-demo" width="400"/>
+  <img src="https://github.com/jfercode/42-Cube3D/blob/main/assets/cube3d-demo.gif" alt="Cube3D-demo" width="400"/>
   <br/>
 </div>
 
@@ -39,6 +39,11 @@ La versión **bonus** de Cube3D añade funcionalidades avanzadas para mejorar la
 - 🗺️ **Minimapa interactivo**: Se visualiza un minimapa en pantalla que representa la disposición del mapa y la posición actual del jugador. El minimapa facilita la navegación y el reconocimiento espacial, mostrando en tiempo real dónde te encuentras y hacia dónde te diriges.
 
 Estas mejoras hacen que Cube3D sea más completo y dinámico, acercándose a la experiencia de los juegos clásicos pero con controles modernos y un entorno más interactivo.
+
+<div align="center">
+  <img src="https://github.com/jfercode/42-Cube3D/blob/main/assets/cube3d-bonus-demo.gif" alt="Cube3D-demo" width="400"/>
+  <br/>
+</div>
 
 ## Uso del Programa 🏃  
 
