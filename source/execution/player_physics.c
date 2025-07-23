@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_physics.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: penpalac <penpalac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaferna2 <jaferna2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:31:05 by jaferna2          #+#    #+#             */
-/*   Updated: 2025/07/01 17:41:08 by penpalac         ###   ########.fr       */
+/*   Updated: 2025/07/23 18:16:38 by jaferna2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,7 @@ void	open_door(t_game *game)
 	int		target_y;
 	double	x;
 	double	y;
-	int		i;
 
-	i = 0;
 	x = game->player->pos_x + game->player->dir_x * TILE_SIZE * 1.5;
 	y = game->player->pos_y + game->player->dir_y * TILE_SIZE * 1.5;
 	target_x = (int)(x / TILE_SIZE);
